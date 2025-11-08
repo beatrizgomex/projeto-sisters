@@ -47,7 +47,7 @@ public class Usuaria {
     private List<String> habilidades;
 
     @Column(nullable = false)
-    private Boolean preferenciasPriv= true;
+    private boolean preferenciasPriv= true;
 
     @ManyToMany
     @JoinTable(name = "amizade",
