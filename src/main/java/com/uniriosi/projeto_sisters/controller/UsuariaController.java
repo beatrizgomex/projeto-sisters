@@ -32,7 +32,7 @@ public class UsuariaController {
         usuariaService.excluirPerfil(id);
     }
 
-    // 🔍 Buscar usuárias pelo nome (parcial ou completo)
+    // Buscar usuárias pelo nome (parcial ou completo)
     @GetMapping("/buscar")
     public List<Usuaria> buscarPerfil(@RequestParam String nome) {
         return usuariaService.buscarPerfil(nome);

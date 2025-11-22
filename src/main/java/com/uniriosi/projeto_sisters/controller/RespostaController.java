@@ -19,18 +19,16 @@ public class RespostaController {
     public ResponseEntity<Resposta> criarResposta(
             @RequestParam Long idUsuaria,
             @RequestParam Long idPergunta,
-            @RequestBody Resposta respostaCorpo // Assumindo que o corpo (string) está dentro da Entidade/DTO
+            @RequestBody Resposta respostaCorpo
     ) {
         try {
-            // O Service retorna a Resposta salva com o ID gerado
             Resposta novaResposta = respostaService.criarResposta(
                     idUsuaria,
                     idPergunta,
-                    respostaCorpo.getCorpo() // Pega o conteúdo do corpo da requisição
+                    respostaCorpo.getCorpo()
             );
-            return new ResponseEntity<>(novaResposta, HttpStatus.CREATED); // Status 201
+            return new ResponseEntity<>(novaResposta, HttpStatus.CREATED);
         } catch (RuntimeException e) {
-            // Se a Usuária ou Pergunta não forem encontradas
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -40,37 +38,32 @@ public class RespostaController {
         try {
             return ResponseEntity.ok(respostaService.buscarResposta(idResposta));
         } catch (RuntimeException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND); // Status 404
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
-    /**
-     * DELETE: Exclui uma Resposta.
-     * A validação de quem pode excluir (autora da Resposta ou autora da Pergunta) está no Service.
-     * Exemplo de Rota: DELETE /resposta?idResposta=3&idUsuaria=1
-     */
     @DeleteMapping
     public ResponseEntity<Void> excluirResposta(
             @RequestParam Long idResposta,
-            @RequestParam Long idUsuaria // ID da usuária logada/tentando excluir
+            @RequestParam Long idUsuaria
     ){
         try {
             respostaService.excluirResposta(idResposta, idUsuaria);
-            return ResponseEntity.ok().build(); // Status 200 (OK)
+            return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN); // Status 403 (Acesso negado) ou 404
+            return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN);
         }
     }
     @PatchMapping("/aceitar")
     public ResponseEntity<Resposta> marcarRespostaAceita(
             @RequestParam Long idResposta,
-            @RequestParam Long idUsuaria // ID da usuária logada
+            @RequestParam Long idUsuaria
     ){
         try {
             Resposta respostaAceita = respostaService.marcarRespostaAceita(idResposta, idUsuaria);
-            return ResponseEntity.ok(respostaAceita); // Status 200 e retorna a resposta atualizada
+            return ResponseEntity.ok(respostaAceita);
         } catch (RuntimeException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN); // Status 403 (Acesso negado)
+            return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN);
         }
     }
 }
