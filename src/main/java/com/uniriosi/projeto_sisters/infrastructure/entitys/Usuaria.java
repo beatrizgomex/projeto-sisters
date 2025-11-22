@@ -2,14 +2,16 @@ package com.uniriosi.projeto_sisters.infrastructure.entitys;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "usuaria")
 
 @Entity
