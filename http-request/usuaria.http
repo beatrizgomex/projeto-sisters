@@ -1,0 +1,135 @@
+### Criar usuaria
+POST http://localhost:8080/api/usuarias
+Content-Type: application/json
+
+{
+  "nome": "Maria Silva",
+  "bioCurta": "Estudante de TI",
+  "email": "maria.silva@edu.unirio.br",
+  "senha": "senha123",
+  "papel": "Aluna",
+  "preferenciasPriv": false,
+  "interesses": ["java", "backend"],
+  "habilidades": ["git", "spring"],
+  "curso": "BSI",
+  "semestre": 3
+}
+
+
+### Criar usuaria 2
+POST http://localhost:8080/api/usuarias
+Content-Type: application/json
+
+{
+  "nome": "Alice Remetente",
+  "email": "alice.remetente@unirio.br",
+  "senha": "senhaAlice123",
+  "papel": "Professor",
+  "bioCurta": "Desenvolvedora back-end, focada em segurança e Java.",
+  "preferenciasPriv": true,
+  "interesses": ["Java", "Spring Boot", "DevOps"],
+  "habilidades": ["Comunicação", "Liderança"]
+}
+
+### Criar usuaria 3
+POST http://localhost:8080/api/usuarias
+Content-Type: application/json
+
+{
+  "nome": "Beatriz Destinataria",
+  "email": "beatriz.destinataria@edu.unirio.br",
+  "senha": "senhaBea456",
+  "papel": "Aluna",
+  "bioCurta": "Caloura empolgada aprendendo Python e banco de dados.",
+  "preferenciasPriv": false,
+  "interesses": ["Python", "Banco de Dados"],
+  "habilidades": ["Proatividade", "Pesquisa"],
+  "curso": "BSI",
+  "semestre": 1
+}
+
+### Criar usuaria 4
+POST http://localhost:8080/api/usuarias
+Content-Type: application/json
+
+{
+  "nome": "Julia Verde",
+  "email": "ju@edu.unirio.br",
+  "senha": "senhaju",
+  "papel": "Aluna",
+  "bioCurta": "Caloura empolgada aprendendo Python e banco de dados.",
+  "preferenciasPriv": false,
+  "interesses": ["Python", "Banco de Dados"],
+  "habilidades": ["Proatividade", "Pesquisa"],
+  "curso": "BSI",
+  "semestre": 1
+}
+
+### Criar usuaria invalida email
+POST http://localhost:8080/api/usuarias
+Content-Type: application/json
+
+{
+  "nome": "Usuaria Invalida",
+  "email": "invalida@exemplo.com",
+  "senha": "senhaInv789",
+  "papel": "Aluna",
+  "bioCurta": "Tentativa de cadastro com e-mail errado.",
+  "preferenciasPriv": true,
+  "interesses": ["Teste"],
+  "habilidades": ["Failing"],
+  "curso": "BSI",
+  "semestre": "4"
+}
+
+### Criar usuaria invalida email e aluna
+POST http://localhost:8080/api/usuarias
+Content-Type: application/json
+
+{
+  "nome": "Usuaria Invalida Sim",
+  "email": "invalida@unirio.br",
+  "senha": "senhaInv789",
+  "papel": "Aluna",
+  "bioCurta": "Tentativa de cadastro com e-mail errado.",
+  "preferenciasPriv": true,
+  "interesses": ["Teste"],
+  "habilidades": ["Failing"],
+  "curso": "BSI",
+  "semestre": "4"
+}
+
+### Criar usuaria invalida mesmo email
+POST http://localhost:8080/api/usuarias
+Content-Type: application/json
+
+{
+  "nome": "Usuaria Invalida Mesmo Email",
+  "email": "beatriz.destinataria@edu.unirio.br",
+  "senha": "senhaInv789",
+  "papel": "Aluna",
+  "bioCurta": "Tentativa de cadastro com mesmo e-mail.",
+  "preferenciasPriv": true,
+  "interesses": ["Teste"],
+  "habilidades": ["Failing"],
+  "curso": "BSI",
+  "semestre": "4"
+}
+
+### Buscar por ID
+GET http://localhost:8080/api/usuarias/1
+
+### Buscar por Nome
+GET http://localhost:8080/api/usuarias?nome=Maria
+
+### Atualizar - apenas campos presentes são alterados
+PUT http://localhost:8080/api/usuarias/1
+Content-Type: application/json
+
+{
+  "nome": "Maria Silva Souza",
+  "semestre": "4"
+}
+
+### Deletar
+DELETE http://localhost:8080/api/usuarias/4

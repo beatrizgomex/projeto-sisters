@@ -5,12 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Table(name = "aluna")
+
 
 @Entity
 public class Aluna extends Usuaria{

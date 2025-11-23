@@ -2,6 +2,8 @@ package com.uniriosi.projeto_sisters.infrastructure.entitys;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 
 import java.util.List;
 
@@ -9,13 +11,14 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "usuaria")
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuaria {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuaria;
 
     @Column(nullable = false)
@@ -29,6 +32,7 @@ public class Usuaria {
 
     @Column(nullable = false)
     private String papel;
+
 
     @Column(nullable = false)
     private String papelAcolhimento;
@@ -48,6 +52,7 @@ public class Usuaria {
 
     @Column(nullable = false)
     private boolean preferenciasPriv= true;
+
 
     @ManyToMany
     @JoinTable(name = "amizade",
