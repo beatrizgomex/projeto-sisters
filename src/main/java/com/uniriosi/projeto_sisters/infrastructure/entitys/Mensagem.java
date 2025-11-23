@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Mensagem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMensagem;
 
     @Column(nullable = false)
@@ -25,7 +25,7 @@ public class Mensagem {
     private LocalDateTime dataEnvio;
 
     @Column(nullable = false)
-    private boolean statusLeitura = false;
+    private boolean statusLeitura;
 
     @ManyToOne
     @JoinColumn(name = "remetente_id", nullable = false)

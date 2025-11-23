@@ -15,9 +15,10 @@ import java.util.List;
 @Table(name = "usuaria")
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuaria {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuaria;
 
     @Column(nullable = false)
@@ -32,7 +33,7 @@ public class Usuaria {
     @Column(nullable = false)
     private String papel;
 
-    @Column(nullable = false)
+    @Column
     private String papelAcolhimento;
 
     @Column(nullable = false)
@@ -49,7 +50,7 @@ public class Usuaria {
     private List<String> habilidades;
 
     @Column(nullable = false)
-    private Boolean preferenciasPriv= true;
+    private Boolean preferenciasPriv;
 
     @ManyToMany
     @JoinTable(name = "amizade",
