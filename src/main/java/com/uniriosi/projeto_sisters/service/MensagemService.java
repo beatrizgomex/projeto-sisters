@@ -1,4 +1,5 @@
 package com.uniriosi.projeto_sisters.service;
+import com.uniriosi.projeto_sisters.controller.dto.response.MensagemResponse;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Mensagem;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.MensagemRepository;
@@ -78,5 +79,23 @@ public class MensagemService {
                         "Usuária 2 não encontrada."
                 ));
         return mensagemRepository.findConversationHistory(u1, u2);
+    }
+
+    public Mensagem buscarUltimaMensagem(Long idUsuaria) {
+        return mensagemRepository.findUltimaMensagem(idUsuaria)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Nenhuma mensagem encontrada para essa usuária"
+                ));
+    }
+
+    public MensagemResponse convertToResponse(Mensagem mensagem) {
+        return MensagemResponse.builder()
+                .idMensagem(mensagem.getIdMensagem())
+                .conteudo(mensagem.getConteudo())
+                .dataEnvio(mensagem.getDataEnvio())
+                .remetenteId(mensagem.getRemetente().getIdUsuaria())
+                .destinatariaId(mensagem.getDestinataria().getIdUsuaria())
+                .build();
     }
 }

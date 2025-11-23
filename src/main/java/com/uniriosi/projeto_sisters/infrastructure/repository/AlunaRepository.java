@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlunaRepository extends JpaRepository<Aluna, Long> {
-    // Não precisa de métodos aqui, o Spring Data JPA
-    // já fornece save(), findById(), findAll(), etc.
+    // save(), findById(), findAll() do springdata
 }

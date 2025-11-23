@@ -1,6 +1,7 @@
 package com.uniriosi.projeto_sisters.controller;
 
 import com.uniriosi.projeto_sisters.controller.dto.request.MensagemRequest;
+import com.uniriosi.projeto_sisters.controller.dto.response.MensagemResponse;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Mensagem;
 import com.uniriosi.projeto_sisters.service.MensagemService;
 import org.springframework.http.HttpStatus;
@@ -47,6 +48,12 @@ public class MensagemController {
     public ResponseEntity<Void> marcarComoLida(@PathVariable Long idMensagem) {
         mensagemService.marcarStatus(idMensagem);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/ultima/{idUsuaria}")
+    public ResponseEntity<MensagemResponse> buscarUltimaMensagem(@PathVariable Long idUsuaria) {
+        Mensagem mensagem = mensagemService.buscarUltimaMensagem(idUsuaria);
+        return ResponseEntity.ok(mensagemService.convertToResponse(mensagem));
     }
 
 }

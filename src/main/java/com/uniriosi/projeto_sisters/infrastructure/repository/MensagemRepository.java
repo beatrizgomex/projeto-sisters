@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MensagemRepository extends JpaRepository<Mensagem, Long> {
 
@@ -18,4 +19,9 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long> {
             "ORDER BY m.dataEnvio ASC")
     List<Mensagem> findConversationHistory(@Param("u1") Usuaria u1, @Param("u2") Usuaria u2);
 
+    @Query("SELECT m FROM Mensagem m WHERE " +
+            "m.remetente.idUsuaria = :id OR " +
+            "m.destinataria.idUsuaria = :id " +
+            "ORDER BY m.dataEnvio DESC")
+    Optional<Mensagem> findUltimaMensagem(Long id);
 }

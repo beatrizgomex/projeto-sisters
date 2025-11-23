@@ -3,6 +3,7 @@ package com.uniriosi.projeto_sisters.controller;
 import com.uniriosi.projeto_sisters.controller.dto.response.UsuariaResponse;
 import com.uniriosi.projeto_sisters.controller.dto.request.UsuariaRequest;
 import com.uniriosi.projeto_sisters.controller.dto.request.UsuariaUpdateRequest;
+import com.uniriosi.projeto_sisters.controller.dto.request.LoginRequest;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
 import com.uniriosi.projeto_sisters.service.UsuariaService;
@@ -64,6 +65,25 @@ public class UsuariaController {
         Usuaria u = usuariaRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuária não encontrada"));
         return ResponseEntity.ok(usuariaService.convertToResponse(u));
+    }
+
+    @GetMapping("/todas")
+    public ResponseEntity<List<UsuariaResponse>> buscarTodas() {
+        List<Usuaria> usuarias = usuariaRepository.findAll();
+
+        List<UsuariaResponse> responses = usuarias.stream()
+                .map(usuariaService::convertToResponse)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(responses);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UsuariaResponse> login(@RequestBody LoginRequest loginRequest) {
+        Usuaria usuaria = usuariaService.login(loginRequest);
+        return ResponseEntity.ok(
+                usuariaService.convertToResponse(usuaria)
+        );
     }
 
 }

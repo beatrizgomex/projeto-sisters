@@ -1,4 +1,5 @@
 package com.uniriosi.projeto_sisters.service;
+import com.uniriosi.projeto_sisters.controller.dto.request.LoginRequest;
 import com.uniriosi.projeto_sisters.controller.dto.request.UsuariaRequest;
 import com.uniriosi.projeto_sisters.controller.dto.request.UsuariaUpdateRequest;
 import com.uniriosi.projeto_sisters.controller.dto.response.UsuariaResponse;
@@ -147,4 +148,20 @@ public class UsuariaService {
         return builder.build();
     }
 
+    public Usuaria login(LoginRequest loginRequest) {
+
+        Usuaria usuaria = usuariaRepository.findByEmail(loginRequest.getEmail())
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.UNAUTHORIZED, "Email ou senha incorretos"
+                ));
+
+        boolean senhaConfere = passwordEncoder.matches(loginRequest.getSenha(), usuaria.getSenha());
+
+        if (!senhaConfere) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED, "Email ou senha incorretos"
+            );
+        }
+        return usuaria;
+    }
 }
