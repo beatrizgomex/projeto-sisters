@@ -1,0 +1,61 @@
+### Enviar mensagem (Alice → Beatriz)
+POST http://localhost:8080/api/mensagens
+Content-Type: application/json
+
+{
+  "idRemetente": 2,
+  "idDestinataria": 3,
+  "conteudo": "Oi Beatriz, tudo bem? Podemos conversar sobre o projeto Sisters?"
+}
+
+### Enviar mensagem (Beatriz → Alice)
+POST http://localhost:8080/api/mensagens
+Content-Type: application/json
+
+{
+  "idRemetente": 3,
+  "idDestinataria": 2,
+  "conteudo": "Claro Alice! Estou disponível agora :)"
+}
+
+### Enviar mensagem (Julia → Maria)
+POST http://localhost:8080/api/mensagens
+Content-Type: application/json
+
+{
+  "idRemetente": 4,
+  "idDestinataria": 1,
+  "conteudo": "Olá Maria, sou a Julia, prazer!"
+}
+
+### Enviar mensagem com conteúdo vazio (ERRO ESPERADO)
+POST http://localhost:8080/api/mensagens
+Content-Type: application/json
+
+{
+  "idRemetente": 2,
+  "idDestinataria": 3,
+  "conteudo": ""
+}
+
+### Enviar mensagem para destinatária inexistente (ERRO ESPERADO)
+POST http://localhost:8080/api/mensagens
+Content-Type: application/json
+
+{
+  "idRemetente": 1,
+  "idDestinataria": 999,
+  "conteudo": "Olá, existe alguém aí?"
+}
+
+### Buscar histórico entre duas usuárias (Alice ↔ Beatriz)
+GET http://localhost:8080/api/mensagens/historico/2/3
+
+### Buscar histórico entre duas usuárias sem conversa
+GET http://localhost:8080/api/mensagens/historico/1/4
+
+### Marcar mensagem como lida
+PATCH http://localhost:8080/api/mensagens/1/lida
+
+### Marcar mensagem inexistente (ERRO ESPERADO)
+PATCH http://localhost:8080/api/mensagens/999/lida
