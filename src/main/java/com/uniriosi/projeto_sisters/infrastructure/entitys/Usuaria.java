@@ -7,6 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 @AllArgsConstructor

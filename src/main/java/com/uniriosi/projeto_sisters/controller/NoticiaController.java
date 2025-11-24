@@ -66,4 +66,18 @@ public class NoticiaController {
         noticiaService.excluirNoticia(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{id}/rejeitar")
+    public ResponseEntity<Noticia> rejeitarNoticia(@PathVariable Long id, @RequestParam Long usuarioLogadoId) {
+
+        Usuaria usuaria = usuariaRepository.findById(usuarioLogadoId)
+                .orElseThrow(() -> new RuntimeException("Usuária não encontrada ou não logada"));
+
+        if (!usuaria.getPapel().equalsIgnoreCase("administradora")) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        Noticia noticiaRejeitada = noticiaService.rejeitarNoticia(id);
+
+        return ResponseEntity.ok(noticiaRejeitada);
+    }
 }

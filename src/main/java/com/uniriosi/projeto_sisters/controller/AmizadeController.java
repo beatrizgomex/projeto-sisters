@@ -1,10 +1,13 @@
 package com.uniriosi.projeto_sisters.controller;
 
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Amizade;
+import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.service.AmizadeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/amizades")
@@ -55,4 +58,11 @@ public class AmizadeController {
         boolean saoAmigas = amizadeService.saoAmigas(u1, u2);
         return ResponseEntity.ok(saoAmigas);
     }
+
+    @GetMapping("/todas-amigas/{id}")
+    public ResponseEntity<List<Usuaria>> listarAmigas(@PathVariable Long id) {
+        List<Usuaria> amigas = amizadeService.listarTodasAmigas(id);
+        return ResponseEntity.ok(amigas);
+    }
+
 }
