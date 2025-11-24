@@ -49,7 +49,10 @@ rejeitarNoticia(id: number, adminId: number): Observable<any> {
 // Adicione este método na classe NoticiaService
 
 // Método para Excluir (DELETE)
-excluirNoticia(id: number): Observable<void> {
-  // Passamos o ID da notícia e o ID 1 (Admin) para ter permissão
-  return this.http.delete<void>(`${this.apiUrl}/${id}?usuarioLogadoId=1`);
-}}
+// Método para Excluir (DELETE)
+  // CORREÇÃO: Adicione o argumento 'adminId' aqui
+  excluirNoticia(id: number, adminId: number): Observable<void> {
+    // Passamos o ID da notícia e o ID do admin na query string
+    return this.http.delete<void>(`${this.apiUrl}/${id}?usuarioLogadoId=${adminId}`);
+  }
+}

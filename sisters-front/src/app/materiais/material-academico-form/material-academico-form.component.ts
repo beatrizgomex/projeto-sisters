@@ -1,52 +1,64 @@
-
 import { Component, OnInit } from '@angular/core';
-import { MaterialAcademicoService } from '../material-academico.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterLink} from '@angular/router';
+import { FormsModule } from '@angular/forms'; // Necessário para [(ngModel)]
+import { Router, RouterLink } from '@angular/router'; // Necessário para routerLink
+import { MaterialAcademicoService } from '../material-academico.service';
+
+// IMPORT DOS COMPONENTES COMPARTILHADOS
+import { HeaderComponent } from '../../shared/header/header.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-material-academico-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  // LISTA DE IMPORTS OBRIGATÓRIA
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    HeaderComponent, // <--- Permite usar <app-header>
+    FooterComponent  // <--- Permite usar <app-footer>
+  ],
   templateUrl: './material-academico-form.component.html',
   styleUrls: ['./material-academico-form.component.css']
 })
 export class MaterialAcademicoFormComponent implements OnInit {
 
-  // Objeto que será enviado ao Backend (só com os campos necessários)
   materialData = {
     titulo: '',
     descricao: '',
     linkArquivo: '',
-    tipo: 'Artigo' // Valor padrão, baseado no ENUM do Backend
+    tipo: 'Artigo'
   };
 
-  // Usaremos o ID 1, a administradora, como autora para fins de teste
-  autoraId: number = 1;
+  autoraId: number = 1; // Fixo temporariamente (Simulando Maria Silva)
   mensagemSucesso: string = '';
   mensagemErro: string = '';
 
-  constructor(private materialService: MaterialAcademicoService) { }
+  constructor(
+    private materialService: MaterialAcademicoService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {}
 
-  // Método chamado quando o usuário clica em Enviar
   onSubmit() {
     this.mensagemSucesso = '';
     this.mensagemErro = '';
 
-    // Chama o método POST no Service
     this.materialService.compartilharMaterial(this.materialData, this.autoraId).subscribe({
       next: (response) => {
         console.log('Material Enviado:', response);
         this.mensagemSucesso = 'Material compartilhado com sucesso! Aguardando aprovação.';
-        // Limpar o formulário
-        this.materialData = { titulo: '', descricao: '', linkArquivo: '', tipo: 'Artigo' };
+
+        // Redireciona para a lista após 2 segundos
+        setTimeout(() => {
+          this.router.navigate(['/materiais']);
+        }, 2000);
       },
       error: (err) => {
         console.error('Erro ao enviar material:', err);
-        this.mensagemErro = 'Falha ao enviar material. Verifique a conexão e o status do Backend.';
+        this.mensagemErro = 'Falha ao enviar material. Verifique a conexão.';
       }
     });
   }

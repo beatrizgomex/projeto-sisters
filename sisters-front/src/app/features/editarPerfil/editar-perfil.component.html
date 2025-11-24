@@ -11,8 +11,9 @@
   </nav>
 
   <div class="icons-right">
-    <img src="assets/avatar.png" class="extra-icon" routerLink="/atualizarperfil" />
-    <i class="fa-regular fa-user"></i>
+    <a routerLink="/atualizarperfil" class="icon-btn" title="Gerenciar Perfil">
+      <i class="fa-regular fa-user"></i>
+    </a>
   </div>
 </header>
 
@@ -65,7 +66,7 @@
       </div>
 
      <div class="grid1-duplo">
-  
+
   <div class="coluna1-grid">
       <h3>Seu Papel</h3>
       <select formControlName="papel" class="select-papel">
@@ -79,17 +80,17 @@
   <div class="coluna1-grid">
       <h3>Privacidade do Perfil</h3>
       <div class="botoes-privacidade">
-          <button 
-            type="button" 
-            class="priv-btn" 
+          <button
+            type="button"
+            class="priv-btn"
             [class.ativa]="form.value.preferenciasPriv"
             (click)="togglePrivacidade(true)">
             Privado
           </button>
-          
-          <button 
-            type="button" 
-            class="priv-btn" 
+
+          <button
+            type="button"
+            class="priv-btn"
             [class.ativa]="!form.value.preferenciasPriv"
             (click)="togglePrivacidade(false)">
             Público
@@ -104,4 +105,3 @@
   <button type="button" class="btn-salvar" (click)="salvar()">Salvar Alterações</button>
   <button type="button" class="btn-logout" (click)="sair()">Sair</button>
 </div>
-    

@@ -151,7 +151,7 @@
     margin-bottom: 10px;
 }
 
-.coluna-grid, 
+.coluna-grid,
 .coluna1-grid {
     display: flex;
     flex-direction: column;
@@ -186,7 +186,7 @@ input, textarea, .select-papel {
 }
 
 .select-papel {
-    height: 42px; 
+    height: 42px;
     cursor: pointer;
 }
 
@@ -313,4 +313,34 @@ textarea {
 .btn-excluir:hover {
     color: #d00;
     text-decoration: underline;
+}
+
+
+
+.icon-btn {
+  width: 45px;
+  height: 45px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  border: none;
+}
+
+.icon-btn i {
+  font-size: 20px;
+  color: #333333 !important; 
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+}
+
+.icon-btn:hover i {
+  color: #BB0000 !important;
 }

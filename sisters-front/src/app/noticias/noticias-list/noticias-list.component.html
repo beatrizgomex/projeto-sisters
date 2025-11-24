@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="page-banner">
   <div class="banner-content">
     <h1 class="page-title">Notícias e Avisos</h1>
@@ -26,7 +28,6 @@
       </div>
 
       <div class="card-footer">
-
         <div class="author-info">
           <img src="/assets/avatar-placeholder.png" class="author-avatar" alt="Avatar">
           <span class="author-name">{{ item.autora?.nome || 'Administração' }}</span>
@@ -34,13 +35,12 @@
 
         <div class="footer-actions">
           <span class="tag-news">Novidade</span>
-
-          <button class="btn-delete" (click)="excluirNoticia(item.idNoticia)" title="Excluir Notícia">
+          <button *ngIf="isAdmin" class="btn-delete" (click)="excluirNoticia(item.idNoticia)" title="Excluir">
             <i class="fa-regular fa-trash-can"></i>
           </button>
         </div>
-
       </div>
+
     </div>
   </div>
 
@@ -52,3 +52,5 @@
   </ng-template>
 
 </div>
+
+<app-footer></app-footer>

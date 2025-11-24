@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="page-banner">
   <div class="banner-content">
     <h1 class="page-title">Painel de Moderação</h1>
@@ -25,7 +27,7 @@
           <button (click)="aprovarNoticia(item.idNoticia)" class="btn-approve" title="Aprovar">
             <i class="fa-solid fa-check"></i>
           </button>
-          <button class="btn-reject" title="Rejeitar">
+          <button (click)="rejeitarNoticia(item.idNoticia)" class="btn-reject" title="Rejeitar">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -58,3 +60,5 @@
 
   </div>
 </div>
+
+<app-footer></app-footer>

@@ -8,6 +8,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common'; // <-- Adicionado
 
+
 @Component({
     selector: 'app-mensagem-lista',
     standalone: true, // <-- Adicionado: Tornando standalone
@@ -17,13 +18,13 @@ import { CommonModule } from '@angular/common'; // <-- Adicionado
 })
 
 export class MensagensListComponent implements OnInit {
-    
+
     usuarias: Usuaria[] = [];
     conversas: { usuaria: Usuaria, ultimaMensagem: Mensagem | null }[] = [];
     usuariaLogadaId!: number;
 
     constructor(
-        private mensagemService: MensagemService, 
+        private mensagemService: MensagemService,
         private usuariaService: UsuariaService,
         private router: Router
     ) {}
@@ -37,7 +38,7 @@ export class MensagensListComponent implements OnInit {
             console.error('ID da usuária logada não encontrado.');
             return;
         }
-        this.carregarListaDeConversas(); 
+        this.carregarListaDeConversas();
     }
 
     carregarListaDeConversas(): void {
@@ -55,7 +56,7 @@ export class MensagensListComponent implements OnInit {
                         }))
                     )
                 );
-                
+
                 return forkJoin(ultimaMensagemObservables);
             })
         ).subscribe({
@@ -66,7 +67,7 @@ export class MensagensListComponent implements OnInit {
         });
     }
 
-    abrirConversa(id: number) { 
+    abrirConversa(id: number) {
         this.router.navigate(['/chat', id]);
     }
 

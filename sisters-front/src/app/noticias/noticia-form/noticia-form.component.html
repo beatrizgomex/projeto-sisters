@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="page-banner">
   <div class="banner-content">
     <h1 class="page-title">Publicar Notícia</h1>
@@ -16,9 +18,6 @@
 
   <form #newsForm="ngForm" (ngSubmit)="onSubmit()" class="form-card">
 
-<div class="container">
-  <form #newsForm="ngForm" (ngSubmit)="onSubmit()" class="form-card">
-
     <div class="form-group">
       <label>Título da Notícia</label>
       <input type="text" name="titulo" [(ngModel)]="noticiaData.titulo" required placeholder="Ex: Novo Evento...">
@@ -35,3 +34,5 @@
 
   </form>
 </div>
+
+<app-footer></app-footer>
