@@ -5,6 +5,11 @@ import { MaterialAcademicoListComponent } from './materiais/material-academico-l
 import { MaterialAcademicoFormComponent } from './materiais/material-academico-form/material-academico-form.component';
 import { NoticiaFormComponent } from './noticias/noticia-form/noticia-form.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { MensagensListComponent } from './features/mensagem/mensagem-lista/mensagem-lista.component';
+import { MensagemChatComponent } from './features/mensagem/mensagem-chat/mensagem-chat.component';
+import { Login } from './features/login/login';
+import { Cadastro } from './features/cadastro/cadastro';
+import { EditarPerfilComponent } from './features/editarPerfil/editar-perfil.component';
 
 
 export const routes: Routes = [
@@ -18,8 +23,15 @@ export const routes: Routes = [
   // Rotas de Materiais
   { path: 'materiais', component: MaterialAcademicoListComponent },
   { path: 'materiais/compartilhar', component: MaterialAcademicoFormComponent },
+  { path: 'admin', component: AdminDashboardComponent },
 
- { path: 'admin', component: AdminDashboardComponent },
+  { path: 'login', component: Login },
+  { path: 'cadastro', component: Cadastro },
+  { path: 'mensagens', component: MensagensListComponent },
+  { path: 'chat/:id', component: MensagemChatComponent },
+  { path: 'atualizarperfil', component: EditarPerfilComponent },
+  { path: '**', redirectTo: '/login' },
+
 
 ];
 
