@@ -9,6 +9,7 @@ public class UsuariaUpdateRequest {
     private String nome;
     private String bioCurta;
     private String senha;
+    private String papel;
     private String papelAcolhimento;
     private Boolean preferenciasPriv;
     private List<String> interesses;
