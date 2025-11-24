@@ -32,12 +32,6 @@ public class ParticipantesProgramaController {
 
     @DeleteMapping("/{idParticipacao}")
     public void excluir(@PathVariable Long idParticipacao) {
-
-        ParticipantesPrograma p = participantesService.listarTodas().stream()
-                .filter(pp -> pp.getIdParticipacao().equals(idParticipacao))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Participação não encontrada"));
-
-        participantesService.atualizarStatus(idParticipacao, "CANCELADA");
+        participantesService.excluirParticipacao(idParticipacao);
     }
 }

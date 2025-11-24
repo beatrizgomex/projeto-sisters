@@ -31,4 +31,15 @@ public interface ParticipantesProgramaRepository
     default Optional<ParticipantesPrograma> findAcceptedConnectionByMentee(Usuaria afilhada) {
         return findByAfilhadaAndStatusConexao(afilhada, "ACEITA");
     }
+    boolean existsByProgramaAndAfilhadaAndStatusConexao(
+            ProgramaAcolhimento programa,
+            Usuaria afilhada,
+            String statusConexao
+    );
+
+    long countByProgramaAndMadrinhaAndStatusConexao(
+            ProgramaAcolhimento programa,
+            Usuaria madrinha,
+            String statusConexao
+    );
 }

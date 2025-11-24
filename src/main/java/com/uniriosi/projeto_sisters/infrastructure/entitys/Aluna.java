@@ -17,7 +17,7 @@ import lombok.experimental.SuperBuilder;
 public class Aluna extends Usuaria{
 
     @Id
-    @Column(name = "id_usuaria") // Nome da coluna na tabela 'aluna'
+    @Column(name = "id_usuaria")
     private Long idUsuaria;
 
     @Column(nullable = false)

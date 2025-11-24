@@ -25,21 +25,38 @@ public class ParticipantesProgramaService {
     public ParticipantesPrograma solicitarAcolhimento(
             ProgramaAcolhimento programa,
             Usuaria afilhada,
-            Usuaria madrinha
+            Usuaria madrinhaSugestao
     ) {
-        repository.findByProgramaAndAfilhada(programa, afilhada)
-                .ifPresent(p -> {
-                    throw new BusinessRuleException("Afilhada já possui solicitação neste programa.");
-                });
 
-        ParticipantesPrograma participacao = ParticipantesPrograma.builder()
+        // Regra 1: afilhada já tem madrinha?
+        boolean afilhadaJaTemMadrinha = repository
+                .existsByProgramaAndAfilhadaAndStatusConexao(programa, afilhada, "ACEITA");
+
+        if (afilhadaJaTemMadrinha) {
+            throw new RuntimeException("Afilhada já possui uma madrinha neste programa.");
+        }
+
+        // Se houver madrinha sugerida, validar limitações
+        if (madrinhaSugestao != null) {
+
+            long quantidadeAfilhadas = repository.countByProgramaAndMadrinhaAndStatusConexao(
+                    programa, madrinhaSugestao, "ACEITA"
+            );
+
+            if (quantidadeAfilhadas >= 5) {
+                throw new RuntimeException("Esta madrinha já atingiu o limite de 5 afilhadas.");
+            }
+        }
+
+
+        ParticipantesPrograma solicitacao = ParticipantesPrograma.builder()
                 .programa(programa)
                 .afilhada(afilhada)
-                .madrinha(madrinha)
+                .madrinha(madrinhaSugestao)
                 .statusConexao("PENDENTE")
                 .build();
 
-        return repository.save(participacao);
+        return repository.save(solicitacao);
     }
 
     public ParticipantesPrograma atualizarStatus(Long idParticipacao, String novoStatus) {
@@ -78,5 +95,11 @@ public class ParticipantesProgramaService {
         p.setStatusConexao("REJEITADA");
 
         return repository.save(p);
+    }
+    public void excluirParticipacao(Long idParticipacao) {
+        ParticipantesPrograma participante = repository.findById(idParticipacao)
+                .orElseThrow(() -> new RuntimeException("Participação não encontrada"));
+
+        repository.delete(participante);
     }
 }
