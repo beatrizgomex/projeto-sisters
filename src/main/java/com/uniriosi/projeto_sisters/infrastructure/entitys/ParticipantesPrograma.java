@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "ParticipantesPrograma")
+@Table(name = "participantes_programa")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,17 +16,20 @@ public class ParticipantesPrograma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idParticipacao;
 
-    // relacionamento com ProgramaAcolhimento
+
     @ManyToOne
     @JoinColumn(name = "id_programa", nullable = false)
     private ProgramaAcolhimento programa;
 
-    // relacionamento com Usuaria
-    @ManyToOne
-    @JoinColumn(name = "id_usuaria", nullable = false)
-    private Usuaria usuaria;
 
-    // único atributo próprio
+    @ManyToOne
+    @JoinColumn(name = "id_afilhada", nullable = false)
+    private Usuaria afilhada;
+
+    @ManyToOne
+    @JoinColumn(name = "id_madrinha")
+    private Usuaria madrinha;
+
     @Column(nullable = false)
     private String statusConexao;
 }

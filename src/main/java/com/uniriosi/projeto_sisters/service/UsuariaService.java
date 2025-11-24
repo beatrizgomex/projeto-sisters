@@ -1,15 +1,10 @@
 package com.uniriosi.projeto_sisters.service;
-<<<<<<< HEAD
-import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
-import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-=======
 import com.uniriosi.projeto_sisters.controller.dto.request.LoginRequest;
 import com.uniriosi.projeto_sisters.controller.dto.request.UsuariaRequest;
 import com.uniriosi.projeto_sisters.controller.dto.request.UsuariaUpdateRequest;
 import com.uniriosi.projeto_sisters.controller.dto.response.UsuariaResponse;
+import com.uniriosi.projeto_sisters.exception.ResourceNotFoundException;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Aluna;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.AlunaRepository;
@@ -18,62 +13,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
->>>>>>> 699058a7dc2d610161cba6278577c7e5529cdca1
 import java.util.List;
 
 @Service
 public class UsuariaService {
 
-<<<<<<< HEAD
-    @Autowired
-    private UsuariaRepository usuariaRepository;
-
-    @Autowired
-    private MensagemService mensagemService;
-
-    public Usuaria cadastrar(Usuaria usuaria) {
-        if(usuariaRepository.existsByEmail(usuaria.getEmail())) {
-            throw new RuntimeException("Email ja existente");
-        }
-        return usuariaRepository.save(usuaria);
-    }
-
-    public void atualizarPerfil(Long id, Usuaria usuariaDadosNovos){
-        Usuaria usuariaEntity = usuariaRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
-
-        Usuaria usuariaAtualizada = Usuaria.builder()
-                .idUsuaria(usuariaEntity.getIdUsuaria())
-                .nome(usuariaDadosNovos.getNome() != null ? usuariaDadosNovos.getNome() : usuariaEntity.getNome())
-                .email(usuariaDadosNovos.getEmail() != null ? usuariaDadosNovos.getEmail() : usuariaEntity.getEmail())
-                .senha(usuariaDadosNovos.getSenha() != null ? usuariaDadosNovos.getSenha() : usuariaEntity.getSenha())
-                .papel(usuariaDadosNovos.getPapel() != null ? usuariaDadosNovos.getPapel() : usuariaEntity.getPapel())
-                .papelAcolhimento(usuariaDadosNovos.getPapelAcolhimento() != null ? usuariaDadosNovos.getPapelAcolhimento() : usuariaEntity.getPapelAcolhimento())
-                .bioCurta(usuariaDadosNovos.getBioCurta() != null ? usuariaDadosNovos.getBioCurta() : usuariaEntity.getBioCurta())
-                .interesses(usuariaDadosNovos.getInteresses() != null ? usuariaDadosNovos.getInteresses() : usuariaEntity.getInteresses())
-                .habilidades(usuariaDadosNovos.getHabilidades() != null ? usuariaDadosNovos.getHabilidades() : usuariaEntity.getHabilidades())
-                .preferenciasPriv(usuariaDadosNovos.getPreferenciasPriv() != null ? usuariaDadosNovos.getPreferenciasPriv() : usuariaEntity.getPreferenciasPriv())
-                .build();
-
-        usuariaRepository.saveAndFlush(usuariaAtualizada);
-
-    }
-
-    public void excluirPerfil(Long id) {
-        if (!usuariaRepository.existsById(id)) {
-            throw new RuntimeException("Usuária não encontrada");
-=======
     private final UsuariaRepository usuariaRepository;
     private final AlunaRepository alunaRepository;
     private final PasswordEncoder passwordEncoder;
     private static final String UNIRIO_EMAIL = ".*@(edu\\.unirio\\.br|uniriotec\\.br|unirio\\.br)$";
     private static final String ALUNA_EMAIL = ".*@(edu\\.unirio\\.br)$";
+    private static final String MADRINHA_PAPEL_ACOLHIMENTO = "VETERANA";
 
 
     public UsuariaService(UsuariaRepository usuariaRepository, AlunaRepository alunaRepository, PasswordEncoder passwordEncoder) {
         this.usuariaRepository = usuariaRepository;
         this.alunaRepository = alunaRepository;
         this.passwordEncoder = passwordEncoder;
+
     }
 
     public Usuaria cadastrar(UsuariaRequest usuaria) {
@@ -166,7 +123,7 @@ public class UsuariaService {
                     HttpStatus.NOT_FOUND,
                     "Usuária não encontrada"
             );
->>>>>>> 699058a7dc2d610161cba6278577c7e5529cdca1
+
         }
         usuariaRepository.deleteById(id);
     }
@@ -175,14 +132,8 @@ public class UsuariaService {
         return usuariaRepository.findByNomeContainingIgnoreCase(nome);
     }
 
-<<<<<<< HEAD
-    public void enviarMensagem(Long idRemetente, Long idDestinataria, String conteudo) {
-        //verficar se sao amigas por amzdService
-        mensagemService.enviarMensagem(idRemetente, idDestinataria, conteudo);
-    }
 
 
-=======
     public UsuariaResponse convertToResponse(Usuaria usuaria) {
         UsuariaResponse.UsuariaResponseBuilder builder = UsuariaResponse.builder()
                 .idUsuaria(usuaria.getIdUsuaria())
@@ -220,5 +171,15 @@ public class UsuariaService {
         }
         return usuaria;
     }
->>>>>>> 699058a7dc2d610161cba6278577c7e5529cdca1
+
+    public Usuaria buscarPorId(Long idUsuaria) {
+        return usuariaRepository.findById(idUsuaria)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuária não encontrada com ID: " + idUsuaria));
+    }
+
+    public List<Usuaria> findMadrinhaVeteranaCandidates() {
+        return usuariaRepository.findByPapelAcolhimento(MADRINHA_PAPEL_ACOLHIMENTO);
+    }
+
 }
+

@@ -51,7 +51,7 @@ public class Usuaria {
     private List<String> habilidades;
 
     @Column(nullable = false)
-    private boolean preferenciasPriv= true;
+    private Boolean preferenciasPriv = true;
 
 
     @ManyToMany

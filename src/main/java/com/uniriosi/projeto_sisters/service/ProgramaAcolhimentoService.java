@@ -1,97 +1,67 @@
 package com.uniriosi.projeto_sisters.service;
 
-import com.uniriosi.projeto_sisters.exception.ProgramaNaoEncontradoException;
+import com.uniriosi.projeto_sisters.exception.ResourceNotFoundException;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.ParticipantesPrograma;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.ProgramaAcolhimento;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
-import com.uniriosi.projeto_sisters.infrastructure.repository.ParticipantesProgramaRepository;
-import org.springframework.stereotype.Service;
+import com.uniriosi.projeto_sisters.infrastructure.repository.ParticipantesProgramaRepository; // Import necessário
 import com.uniriosi.projeto_sisters.infrastructure.repository.ProgramaAcolhimentoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-
 public class ProgramaAcolhimentoService {
-        private final ProgramaAcolhimentoRepository programaRepository;
-        private final ParticipantesProgramaRepository participantesRepository;
 
-        public ProgramaAcolhimentoService(ProgramaAcolhimentoRepository programaRepository,
-                                          ParticipantesProgramaRepository participantesRepository) {
-            this.programaRepository = programaRepository;
-            this.participantesRepository = participantesRepository;
-        }
+    @Autowired
+    private ProgramaAcolhimentoRepository programaAcolhimentoRepository;
 
-        public void solicitarAcolhimento(Long idPrograma, Usuaria acolhida) {
-            try {
-                // Tenta buscar o programa pelo ID
-                ProgramaAcolhimento programa = programaRepository.findById(idPrograma).get();
+    @Autowired
+    private ParticipantesProgramaRepository participantesProgramaRepository; // Agora injetando o ajustado
 
-                // Verifica se a usuária já participa do programa
-                Optional<ParticipantesPrograma> existente =
-                        participantesRepository.findByProgramaAndUsuaria(programa, acolhida);
+    @Autowired
+    private UsuariaService usuariaService;
 
-                if (existente.isPresent()) {
-                    System.out.println("A usuária já está participando deste programa.");
-                    return;
-                }
+    private static final int MAX_AFILHADAS_POR_MADRINHA = 5;
 
-                // Cria a relação acolhida-programa com status pendente
-                ParticipantesPrograma participacao = ParticipantesPrograma.builder()
-                        .programa(programa)
-                        .usuaria(acolhida)
-                        .statusConexao("PENDENTE")
-                        .build();
-
-                participantesRepository.save(participacao);
-                System.out.println("Solicitação de acolhimento enviada por " + acolhida.getNome());
-
-            } catch (NoSuchElementException e) {
-                // Esse bloco é executado se o programa NÃO for encontrado no banco
-                System.out.println("Erro: Programa de acolhimento com ID " + idPrograma + " não encontrado!");
-            }
-        }
-
-
-        /*
-        public void aceitarOuRejeitar(Usuaria madrinha, Usuaria acolhida, boolean aceitar) {
-            // Procura o relacionamento entre as usuárias dentro desse programa
-            for (ParticipantesPrograma relacao : participantes) {
-                if (relacao.getUsuaria().equals(acolhida)) {
-                    if (aceitar) {
-                        relacao.setStatusConexao("ACEITA");
-                        System.out.println("Acolhimento aceito por "
-                                + madrinha.getNome() + " para " + acolhida.getNome());
-                    } else {
-                        relacao.setStatusConexao("REJEITADA");
-                        System.out.println("Acolhimento rejeitado por "
-                                + madrinha.getNome() + " para " + acolhida.getNome());
-                    }
-                    return; // Sai do loop após encontrar a usuária
-                }
-            }
-
-            // Caso não encontre nenhuma relação correspondente
-            System.out.println("Nenhuma relação encontrada entre "
-                    + madrinha.getNome() + " e " + acolhida.getNome()
-                    + " neste programa.");
-        }
-
-         */
-
-
-        /*
-        public void sugerirMadrinha(Long idPrograma, Usuaria madrinha) {
-            ProgramaAcolhimento programa = repository.findById(idPrograma)
-                    .orElseThrow(() -> new ProgramaNaoEncontradoException(idPrograma));
-
-            System.out.println("Sugestão de madrinha para o programa "
-                    + programa.getIdPrograma() + ": " + madrinha.getNome());
-        }
-
-         */
+    public ProgramaAcolhimento salvarPrograma(ProgramaAcolhimento programa) {
+        return programaAcolhimentoRepository.save(programa);
     }
 
+    public List<ProgramaAcolhimento> listarProgramas() {
+        return programaAcolhimentoRepository.findAll();
+    }
 
+    public ProgramaAcolhimento buscarPorId(Long idPrograma) {
+        return programaAcolhimentoRepository.findById(idPrograma)
+                .orElseThrow(() -> new ResourceNotFoundException("Programa de Acolhimento não encontrado com ID: " + idPrograma));
+    }
+
+    public List<ParticipantesPrograma> listarParticipantes(Long idPrograma) {
+        ProgramaAcolhimento programa = buscarPorId(idPrograma);
+        return participantesProgramaRepository.findByPrograma(programa);
+    }
+
+    public List<Usuaria> sugerirMadrinhasPara(Long idPrograma, Long afilhadaId) {
+
+        Usuaria afilhada = usuariaService.buscarPorId(afilhadaId);
+
+        if (participantesProgramaRepository.findAcceptedConnectionByMentee(afilhada).isPresent()) {
+            return List.of();
+        }
+
+        List<Usuaria> candidatasMadrinha = usuariaService.findMadrinhaVeteranaCandidates();
+
+        List<Usuaria> madrinhasSugeridas = candidatasMadrinha.stream()
+                .filter(madrinha -> {
+                    // Usa o método countAcceptedMenteesByMentor(madrinha) do repositório.
+                    Long afilhadasAtivas = participantesProgramaRepository.countAcceptedMenteesByMentor(madrinha);
+                    return afilhadasAtivas < MAX_AFILHADAS_POR_MADRINHA;
+                })
+                .collect(Collectors.toList());
+
+        return madrinhasSugeridas;
+    }
+}

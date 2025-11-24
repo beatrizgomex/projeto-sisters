@@ -12,4 +12,5 @@ public interface UsuariaRepository extends JpaRepository<Usuaria, Long> {
     List<Usuaria> findByPapel(String papel);
     List<Usuaria> findByNomeContainingIgnoreCase(String nome);
     boolean existsByEmail(String email);
+    List<Usuaria> findByPapelAcolhimento(String papelAcolhimento);
 }

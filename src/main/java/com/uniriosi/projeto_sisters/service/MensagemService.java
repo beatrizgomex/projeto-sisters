@@ -1,42 +1,22 @@
 package com.uniriosi.projeto_sisters.service;
-<<<<<<< HEAD
-=======
+
 import com.uniriosi.projeto_sisters.controller.dto.response.MensagemResponse;
->>>>>>> 699058a7dc2d610161cba6278577c7e5529cdca1
+
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Mensagem;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.MensagemRepository;
 import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-=======
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
->>>>>>> 699058a7dc2d610161cba6278577c7e5529cdca1
 
 @Service
 public class MensagemService {
 
-<<<<<<< HEAD
-    @Autowired
-    private MensagemRepository mensagemRepository;
-
-    @Autowired
-    private UsuariaRepository usuariaRepository;
-
-    public Mensagem enviarMensagem(Long idRemetente, Long idDestinatario, String conteudo){
-        Usuaria remetente = usuariaRepository.findById(idRemetente)
-                .orElseThrow(RuntimeException::new);
-        Usuaria destinataria = usuariaRepository.findById(idDestinatario)
-                .orElseThrow(RuntimeException::new);
-=======
     private final MensagemRepository mensagemRepository;
     private final UsuariaRepository usuariaRepository;
 
@@ -67,7 +47,6 @@ public class MensagemService {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Destinatária não encontrada."
                 ));
->>>>>>> 699058a7dc2d610161cba6278577c7e5529cdca1
 
         Mensagem mensagem = Mensagem.builder()
                 .remetente(remetente)
@@ -82,12 +61,6 @@ public class MensagemService {
 
     public void marcarStatus(Long idMensagem){
         Mensagem mensagem = mensagemRepository.findById(idMensagem)
-<<<<<<< HEAD
-                .orElseThrow(RuntimeException::new);
-        mensagem.setStatusLeitura(true);
-        mensagemRepository.saveAndFlush(mensagem);
-    }
-=======
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "Mensagem não encontrada."
@@ -128,5 +101,5 @@ public class MensagemService {
                 .destinatariaId(mensagem.getDestinataria().getIdUsuaria())
                 .build();
     }
->>>>>>> 699058a7dc2d610161cba6278577c7e5529cdca1
+
 }
