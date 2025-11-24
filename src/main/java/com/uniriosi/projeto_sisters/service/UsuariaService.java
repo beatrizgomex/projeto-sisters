@@ -96,6 +96,8 @@ public class UsuariaService {
             usuariaEntity.setInteresses(usuariaNovosDados.getInteresses());
         if (usuariaNovosDados.getHabilidades() != null)
             usuariaEntity.setHabilidades(usuariaNovosDados.getHabilidades());
+        if (usuariaNovosDados.getPapel() != null)
+            usuariaEntity.setPapel(usuariaNovosDados.getPapel());
         if (usuariaNovosDados.getPapelAcolhimento() != null)
             usuariaEntity.setPapelAcolhimento(usuariaNovosDados.getPapelAcolhimento());
         if (usuariaNovosDados.getSenha() != null && !usuariaNovosDados.getSenha().isBlank()) {

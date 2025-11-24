@@ -4,6 +4,7 @@ import com.uniriosi.projeto_sisters.infrastructure.entitys.Mensagem;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.MensagemRepository;
 import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
+import com.uniriosi.projeto_sisters.service.AmizadeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,13 +17,19 @@ public class MensagemService {
 
     private final MensagemRepository mensagemRepository;
     private final UsuariaRepository usuariaRepository;
+    private final AmizadeService amizadeService;
 
-    public MensagemService(MensagemRepository mensagemRepository, UsuariaRepository usuariaRepository) {
+    public MensagemService(MensagemRepository mensagemRepository, UsuariaRepository usuariaRepository, AmizadeService amizadeService) {
         this.mensagemRepository = mensagemRepository;
         this.usuariaRepository = usuariaRepository;
+        this.amizadeService = amizadeService;
     }
 
     public Mensagem enviarMensagem(Long idRemetente, Long idDestinatario, String conteudo){
+
+        if (!amizadeService.saoAmigas(idRemetente, idDestinatario)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Você só pode enviar mensagem para amigas.");
+        }
 
         if (idDestinatario == null) {
             throw new ResponseStatusException(
@@ -81,12 +88,18 @@ public class MensagemService {
         return mensagemRepository.findConversationHistory(u1, u2);
     }
 
-    public Mensagem buscarUltimaMensagem(Long idUsuaria) {
-        return mensagemRepository.findUltimaMensagem(idUsuaria)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Nenhuma mensagem encontrada para essa usuária"
-                ));
+    public Mensagem buscarUltimaMensagem(Long idUsuaria1, Long idUsuaria2) {
+        Usuaria u1 = usuariaRepository.findById(idUsuaria1).orElse(null);
+        Usuaria u2 = usuariaRepository.findById(idUsuaria2).orElse(null);
+
+        if (u1 == null || u2 == null) {
+            return null; // Retorna nulo se as usuárias não existirem
+        }
+
+        List<Mensagem> mensagens = mensagemRepository
+                .findByRemetenteAndDestinatariaOrDestinatariaAndRemetenteOrderByDataEnvioDesc(
+                        u1, u2, u1, u2);
+        return mensagens.isEmpty() ? null : mensagens.get(0);
     }
 
     public MensagemResponse convertToResponse(Mensagem mensagem) {

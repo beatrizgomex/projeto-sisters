@@ -79,7 +79,7 @@ public class AmizadeService {
         if (u1 == null || u2 == null) return false;
 
         Optional<Amizade> amizade = amizadeRepository.findByUsuaria1AndUsuaria2OrUsuaria2AndUsuaria1(
-                u1, u2, u2, u1);
+                u1, u2, u1, u2);
 
         return amizade.isPresent() && amizade.get().getStatus().equals("ACEITO");
     }

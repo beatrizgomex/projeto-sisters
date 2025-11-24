@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/mensagens")
+@CrossOrigin(origins = "*") // ou "http://localhost:4200"
 public class MensagemController {
 
     private final MensagemService mensagemService;
@@ -50,9 +51,15 @@ public class MensagemController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/ultima/{idUsuaria}")
-    public ResponseEntity<MensagemResponse> buscarUltimaMensagem(@PathVariable Long idUsuaria) {
-        Mensagem mensagem = mensagemService.buscarUltimaMensagem(idUsuaria);
+    @GetMapping("/ultima")
+    public ResponseEntity<MensagemResponse> buscarUltimaMensagem(
+            @RequestParam Long u1,
+            @RequestParam Long u2) {
+        Mensagem mensagem = mensagemService.buscarUltimaMensagem(u1, u2);
+
+        if (mensagem == null) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(mensagemService.convertToResponse(mensagem));
     }
 
