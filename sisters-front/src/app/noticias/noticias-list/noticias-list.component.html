@@ -1,0 +1,54 @@
+<div class="page-banner">
+  <div class="banner-content">
+    <h1 class="page-title">Notícias e Avisos</h1>
+
+    <a routerLink="/noticias/publicar" class="add-btn" title="Publicar nova notícia">
+      <i class="fa-solid fa-pen-to-square"></i>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="news-grid" *ngIf="noticias.length > 0; else noData">
+
+    <div *ngFor="let item of noticias" class="news-card">
+
+      <div class="card-header">
+        <span class="news-date">
+          <i class="fa-regular fa-calendar"></i> {{ item.dataPublicacao | date:'dd/MM/yyyy' }}
+        </span>
+      </div>
+
+      <div class="card-body">
+        <h3 class="news-title">{{ item.titulo }}</h3>
+        <p class="news-desc">{{ item.descricao }}</p>
+      </div>
+
+      <div class="card-footer">
+
+        <div class="author-info">
+          <img src="/assets/avatar-placeholder.png" class="author-avatar" alt="Avatar">
+          <span class="author-name">{{ item.autora?.nome || 'Administração' }}</span>
+        </div>
+
+        <div class="footer-actions">
+          <span class="tag-news">Novidade</span>
+
+          <button class="btn-delete" (click)="excluirNoticia(item.idNoticia)" title="Excluir Notícia">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="empty-state">
+      <i class="fa-regular fa-newspaper empty-icon"></i>
+      <p>Nenhuma notícia publicada no momento.</p>
+    </div>
+  </ng-template>
+
+</div>

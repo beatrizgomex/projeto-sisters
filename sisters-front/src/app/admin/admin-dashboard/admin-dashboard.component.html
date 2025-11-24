@@ -1,0 +1,60 @@
+<div class="page-banner">
+  <div class="banner-content">
+    <h1 class="page-title">Painel de Moderação</h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="admin-grid">
+
+    <section class="moderation-column">
+      <h2><i class="fa-regular fa-newspaper"></i> Notícias Pendentes</h2>
+
+      <div *ngIf="noticiasPendentes.length === 0" class="empty-state">
+        Tudo limpo por aqui!
+      </div>
+
+      <div *ngFor="let item of noticiasPendentes" class="admin-card">
+        <div class="card-content">
+          <h4>{{ item.titulo }}</h4>
+          <small>Por: {{ item.autora?.nome }}</small>
+          <p>{{ item.descricao }}</p>
+        </div>
+        <div class="card-actions">
+          <button (click)="aprovarNoticia(item.idNoticia)" class="btn-approve" title="Aprovar">
+            <i class="fa-solid fa-check"></i>
+          </button>
+          <button class="btn-reject" title="Rejeitar">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="moderation-column">
+      <h2><i class="fa-solid fa-book"></i> Materiais Pendentes</h2>
+
+      <div *ngIf="materiaisPendentes.length === 0" class="empty-state">
+        Tudo limpo por aqui!
+      </div>
+
+      <div *ngFor="let item of materiaisPendentes" class="admin-card">
+        <div class="card-content">
+          <h4>{{ item.titulo }}</h4>
+          <small>Tipo: {{ item.tipo }} | Por: {{ item.autora?.nome }}</small>
+          <a [href]="item.linkArquivo" target="_blank">Ver Arquivo</a>
+        </div>
+        <div class="card-actions">
+          <button (click)="aprovarMaterial(item.idMaterial)" class="btn-approve">
+            <i class="fa-solid fa-check"></i>
+          </button>
+          <button class="btn-reject">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
