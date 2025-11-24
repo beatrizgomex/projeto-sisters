@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "participantes_programa")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,11 +15,9 @@ public class ParticipantesPrograma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idParticipacao;
 
-
     @ManyToOne
     @JoinColumn(name = "id_programa", nullable = false)
     private ProgramaAcolhimento programa;
-
 
     @ManyToOne
     @JoinColumn(name = "id_afilhada", nullable = false)

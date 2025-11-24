@@ -4,10 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-
 import java.util.List;
 
-@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,8 +32,7 @@ public class Usuaria {
     @Column(nullable = false)
     private String papel;
 
-
-    @Column(nullable = false)
+    @Column
     private String papelAcolhimento;
 
     @Column(nullable = false)
