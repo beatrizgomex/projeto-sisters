@@ -34,15 +34,19 @@
 
 #### Testes de carga (SLA):
 
-[Script de teste]()
+[Script de teste](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/usuarias_todas.js)
 
-[Resultados]()
+[Resultados](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/inserir20.jpg)
+[Resultados](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/inserir100.jpg)
+[Resultados](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/inserir500.jpg)
+
 
 #### Latência média por carga
 
 -   20 VUs: *6.19 ms*
 -   100 VUs: *7.72 ms*
 -   500 VUs: *96.3 ms*
+[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeinserirl.jpg)
 
 
 #### Vazão média por carga
@@ -50,6 +54,7 @@
 -   20 VUs: *186.18*
 -   100 VUs: *897.88*
 -   500 VUs: *2303.08*
+[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeinserirv.jpg)
 
 
 #### Concorrência
@@ -57,6 +62,7 @@
 -   20 VUs: min=20 / max=20
 -   100 VUs: min=100 / max=100
 -   500 VUs: min=500 / max=500
+[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeinserirc.jpg)
 
 #### Hipoteses
 
@@ -82,25 +88,28 @@ Os testes mostram que, acima de 100 usuários virtuais, a latência aumenta bast
 
 #### Testes de carga (SLA):
 
-[Script de teste]()
+[Script de teste](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/teste-leitura-noticia-50VUs.js)
+[Script de teste](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/teste-leitura-noticia-100VUs.js)
 
-[Resultados]()
+[Resultados](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/leitura50.jpg)
+[Resultados](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/leitura100.jpg)
 
 #### Latência média por carga
 -   50 VUs: *17.14ms*
 -   100 VUs: *14.52 ms*
+[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeleitural.jpg)
 
 #### Vazão média por carga
 - 50 VUs: *26.28*
 - 100 VUs: *96.80*
-
+[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeleiturav.jpg)
 
 #### Concorrência
 
 - 50 VUs: min=50 / max=50
 - 100 VUs: min=100 / max=100
 
-
+[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeleiturac1.jpg)
 
 ### Hipóteses
 **Pool de Conexões do Banco:** Mesmo sendo uma operação de leitura, o aumento de usuários pode ter pressionado o número máximo de conexões disponíveis no HikariCP (padrão do Spring, geralmente configurado para 10). Com 50 ou 100 usuários simultâneos, algumas requisições podem ter aguardado fila, elevando a latência ocasionalmente.
