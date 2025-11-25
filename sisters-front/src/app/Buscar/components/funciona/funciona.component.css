@@ -1,0 +1,62 @@
+.funciona-container {
+  padding: 70px 20px;
+  text-align: center;
+  font-family: "Inter", Arial, sans-serif;
+
+  /* ADICIONADO */
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-right: 0; 
+  margin-left: 100px; /* empurra pra direita */
+}
+
+.funciona-title {
+  font-size: 32px;
+  color: #b0000d;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.funciona-subtitle {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 60px;
+}
+
+.funciona-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  flex-wrap: nowrap;
+}
+
+.funciona-item {
+  max-width: 220px;
+  text-align: center;
+}
+
+.icon {
+  width: 45px;
+  margin-bottom: 12px;
+}
+
+.funciona-item h3 {
+  font-size: 17px;
+  color: #000;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.funciona-item p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* SETAS */
+.arrow {
+  width: 60px;
+  height: auto;
+  margin-top: 30px;
+}

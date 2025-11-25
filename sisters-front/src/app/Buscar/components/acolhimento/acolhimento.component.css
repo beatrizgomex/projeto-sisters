@@ -1,0 +1,51 @@
+.acolhimento {
+  text-align: center;
+  padding: 60px 0;
+  color: #4a1b1f;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.titulo {
+  font-size: 36px;
+  font-weight: 800;
+  font-family: "Inter", Arial, sans-serif;
+  color:  #b0000d;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  font-size: 16px;
+  margin-bottom: 50px;
+  line-height: 1.4;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.card {
+  max-width: 230px;
+}
+
+.icon {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.arrow {
+  width: 50px;
+}

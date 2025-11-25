@@ -1,0 +1,9 @@
+:host {
+  background-color: white;
+  padding: 15px;
+  color: black;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  box-sizing: border-box; 
+  display: block;
+}

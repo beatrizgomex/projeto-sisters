@@ -1,0 +1,29 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <h2>Resultados para "{{ termoBuscado }}"</h2>
+
+  <div *ngIf="carregando" class="loading">
+    Carregando...
+  </div>
+
+  <div *ngIf="semResultados && !carregando" class="no-results">
+    Nenhuma usuária encontrada.
+  </div>
+
+  <div *ngIf="!carregando && resultados.length > 0">
+
+    <div class="card"
+         *ngFor="let u of resultados"
+         (click)="abrirPerfil(u.idUsuaria)">
+         
+      <h3>{{ u.nome }}</h3>
+      <p><strong>Email:</strong> {{ u.email }}</p>
+      <p><strong>Papel:</strong> {{ u.papel }}</p>
+
+    </div>
+
+  </div>
+
+</div>

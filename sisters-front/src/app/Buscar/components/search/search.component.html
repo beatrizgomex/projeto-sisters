@@ -1,0 +1,13 @@
+<div class="search-container">
+  <input 
+    type="text" 
+    [(ngModel)]="nome"
+    placeholder="Buscar usuária..."
+  >
+
+  <button (click)="buscar()">
+    Buscar
+  </button>
+
+  <p *ngIf="erro" class="erro">{{ erro }}</p>
+</div>

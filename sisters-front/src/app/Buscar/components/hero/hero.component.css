@@ -1,0 +1,32 @@
+.hero {
+  width: 100%;
+  padding: 70px 20px 10px;
+  text-align: center;
+  font-family: "Inter", Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+
+.hero-content {
+  max-width: 1000px; 
+  margin: 0 auto;
+}
+
+
+.hero-title {
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #b0000d;
+}
+
+.hero-title span {
+  color: #b0000d;
+}
+
+.hero-subtitle {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+}

@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<div class="perfil-wrapper" *ngIf="usuaria">
+
+  <h2 class="titulo">Perfil de {{ usuaria.nome }}</h2>
+
+  <div class="perfil-container">
+
+    <div class="linha">
+      <div class="campo">
+        <label>Nome completo</label>
+        <p>{{ usuaria.nome }}</p>
+      </div>
+
+      <div class="campo">
+        <label>Email</label>
+        <p>{{ usuaria.email }}</p>
+      </div>
+    </div>
+
+    <div class="linha" *ngIf="usuaria.semestre || usuaria.curso">
+      <div class="campo" *ngIf="usuaria.semestre">
+        <label>Semestre</label>
+        <p>{{ usuaria.semestre }}</p>
+      </div>
+
+      <div class="campo" *ngIf="usuaria.curso">
+        <label>Curso</label>
+        <p>{{ usuaria.curso }}</p>
+      </div>
+    </div>
+
+    <div class="bio">
+      <label>Biografia</label>
+      <div class="bio-box">
+        {{ usuaria.bioCurta || 'Nenhuma biografia informada.' }}
+      </div>
+    </div>
+
+    <div class="interesses">
+      <label>Áreas de interesse</label>
+
+      <div class="chips" *ngIf="usuaria.interesses?.length > 0; else noInteresses">
+        <span class="chip" *ngFor="let interesse of usuaria.interesses">
+          {{ interesse }}
+        </span>
+      </div>
+
+      <ng-template #noInteresses>
+        <p class="no-info">Nenhum interesse informado.</p>
+      </ng-template>
+    </div>
+
+    <button
+    *ngIf="usuaria.papelAcolhimento === 'VETERANA'"
+    class="btn-acolhimento"
+    (click)="solicitarAcolhimento()">
+      Solicitar Acolhimento
+    </button>
+
+  </div>
+</div>
