@@ -1,0 +1,37 @@
+<header class="header">
+
+  <img src="assets/logo.png" alt="Logo" class="logo" />
+  <nav class="menu">
+
+    <a routerLink="/institucional">Página institucional</a>
+    <a routerLink="/noticias">Notícias</a>
+    <a routerLink="/materiais">Materiais Acadêmicos</a>
+    <a routerLink="/forum">Fórum</a>
+    <a routerLink="/mensagens" class = active>Mensagens</a>
+  </nav>
+
+  <div class="icons-right">
+    <img src="assets/avatar.png" class="extra-icon" routerLink="/atualizarperfil" />
+    <i class="fa-regular fa-user"></i>
+  </div>
+</header>
+
+<div class="chat-container">
+  <h2 class="chat-title">{{ usuariaNome }}</h2>
+
+  <div class="mensagens">
+    <div *ngFor="let msg of mensagens"
+         [ngClass]="{
+           'mensagem-logada': msg.remetente.idUsuaria === usuariaLogadaId,
+           'mensagem-outra': msg.remetente.idUsuaria !== usuariaLogadaId
+         }">
+      <p>{{ msg.conteudo }}</p>
+      <span class="data-msg">{{ formatarHorario(msg.dataEnvio) }}</span>
+    </div>
+  </div>
+
+  <form class="nova-msg-form" [formGroup]="novaMensagemForm" (ngSubmit)="enviarMensagem()">
+    <input type="text" formControlName="conteudo" placeholder="Digite sua mensagem..." />
+    <button type="submit">Enviar</button>
+  </form>
+</div>

@@ -1,0 +1,153 @@
+/* === 1. FAIXA ROSA (BANNER) === */
+.page-banner {
+  width: 100%;
+  background-color: #F9EAEB; /* Rosa bem claro, conforme a imagem */
+  padding: 20px 0;
+  border-bottom: 1px solid #EBCBCF;
+  margin-bottom: 40px; /* Espaço entre o banner e a lista */
+}
+
+.banner-content {
+  max-width: 1200px; /* Mesma largura do conteúdo principal */
+  margin: 0 auto;    /* Centraliza o conteúdo dentro da faixa */
+  padding: 0 50px;   /* Alinhado com o Header */
+  display: flex;
+  justify-content: space-between; /* Título na ponta esq, Botão na ponta dir */
+  align-items: center;
+}
+
+.page-title {
+  color: #BB0000; /* Vermelho UNIRIO */
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Botão de Adicionar (+) */
+.add-btn {
+  font-size: 48px; /* Tamanho grande como no protótipo */
+  color: #555;     /* Cinza escuro */
+  text-decoration: none;
+  transition: transform 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white; /* Fundo branco para destacar o círculo se necessário */
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.add-btn:hover {
+  color: #BB0000;
+  transform: scale(1.1);
+}
+
+/* === 2. CONTAINER DA LISTA === */
+.container {
+  padding: 0 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  padding-bottom: 50px;
+}
+
+/* --- Estilos dos Cards (Mesmos de antes) --- */
+.materials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.material-card {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #E0C0C5;
+}
+
+.card-thumbnail {
+  position: relative;
+  width: 200px;
+  height: 120px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 30px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.card-info {
+  flex-grow: 1;
+}
+
+.material-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #E8B3B9;
+}
+
+.author-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+.card-action {
+  margin-left: 20px;
+}
+
+.action-icon {
+  font-size: 28px;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.action-icon:hover {
+  color: #BB0000;
+}
+
+.empty-state {
+  text-align: center;
+  color: #666;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+

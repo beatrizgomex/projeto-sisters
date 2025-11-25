@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<div class="page-banner">
+  <div class="banner-content">
+    <h1 class="page-title">Publicar Notícia</h1>
+    <a routerLink="/noticias" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div *ngIf="mensagemSucesso" class="alert success">
+    <i class="fa-solid fa-check-circle"></i> {{ mensagemSucesso }}
+  </div>
+  <div *ngIf="mensagemErro" class="alert error">
+    <i class="fa-solid fa-circle-exclamation"></i> {{ mensagemErro }}
+  </div>
+
+  <form #newsForm="ngForm" (ngSubmit)="onSubmit()" class="form-card">
+
+    <div class="form-group">
+      <label>Título da Notícia</label>
+      <input type="text" name="titulo" [(ngModel)]="noticiaData.titulo" required placeholder="Ex: Novo Evento...">
+    </div>
+
+    <div class="form-group">
+      <label>Conteúdo</label>
+      <textarea name="descricao" [(ngModel)]="noticiaData.descricao" required rows="5" placeholder="Detalhes da notícia..."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="newsForm.invalid" class="submit-btn">Publicar</button>
+    </div>
+
+  </form>
+</div>
+
+<app-footer></app-footer>

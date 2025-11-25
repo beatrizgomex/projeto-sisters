@@ -1,0 +1,189 @@
+/* === 1. BANNER (Reutilizando o padrão visual) === */
+.page-banner {
+  width: 100%;
+  background-color: #F9EAEB;
+  padding: 20px 0;
+  border-bottom: 1px solid #EBCBCF;
+  margin-bottom: 40px;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  color: #BB0000;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Botão de Adicionar (Estilo Circular) */
+.add-btn {
+  font-size: 24px;
+  color: #555;
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  color: #BB0000;
+  transform: scale(1.1);
+}
+
+/* === 2. GRID DE NOTÍCIAS === */
+.container {
+  padding: 0 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+/* Cria colunas automáticas (Responsivo) */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+/* --- ESTILO DO CARD --- */
+.news-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Faz todos os cards terem a mesma altura */
+}
+
+.news-card:hover {
+  transform: translateY(-5px); /* Efeito de levantar */
+  box-shadow: 0 10px 20px rgba(187, 0, 0, 0.1); /* Sombra avermelhada suave */
+  border-color: #F9EAEB;
+}
+
+/* Cabeçalho do Card (Data) */
+.card-header {
+  margin-bottom: 15px;
+}
+
+.news-date {
+  font-size: 12px;
+  color: #888;
+  font-weight: 600;
+  background-color: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Corpo do Card */
+.news-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.news-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  /* Limita o texto a 4 linhas para não quebrar o layout */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rodapé do Card */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 15px;
+  margin-top: auto;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.author-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.tag-news {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #BB0000;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Estado Vazio */
+.empty-state {
+  text-align: center;
+  padding: 50px;
+  color: #999;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #E0C0C5;
+}
+
+/* Adicione ou substitua estas classes */
+
+.footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaço entre a tag NOVIDADE e a Lixeira */
+}
+
+/* Botão de Excluir */
+.btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999; /* Cinza discreto inicialmente */
+  font-size: 16px;
+  padding: 5px;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  color: #dc3545; /* Vermelho ao passar o mouse */
+  transform: scale(1.2); /* Aumenta um pouco */
+}

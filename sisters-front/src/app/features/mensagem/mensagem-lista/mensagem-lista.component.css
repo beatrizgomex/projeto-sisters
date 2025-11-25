@@ -1,0 +1,201 @@
+
+:host {
+    font-family: 'Inter', sans-serif;
+    display: block;
+}
+
+/* ====== 2. ESTILOS DO HEADER (CORRIGIDO) ====== */
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: #E8B3B9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    height: 75px;
+    width: auto;
+    display: block;
+}
+
+.menu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+}
+
+.menu a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 3px solid transparent;
+}
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu a.active {
+    font-weight: 700;
+    border-bottom: 3px solid #BB0000;
+    color: #BB0000;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.icons-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.extra-icon {
+    height: 65px;
+    width: auto;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.icons-right .fa-user {
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.icons-right .fa-user:hover {
+    color: #BB0000;
+}
+
+
+/* ===== TÍTULO PRINCIPAL ===== */
+
+.titulo {
+  width: 100%;
+  background-color: rgba(232, 179, 185, 0.28);
+  padding: 25px 40px;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 28px;
+  color: #BB0000;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== LISTA DE CONVERSAS  ===== */
+
+.lista-container {
+  width: 40%;
+  margin: 40px auto 80px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.card-conversa {
+  border: 1px solid #00000030;
+  border-radius: 6px;
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.conversa-left {
+    flex-grow: 1;
+    font-family: 'Inter', sans-serif;
+}
+
+.ultima-msg {
+  margin: 5px 0 0;
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+}
+
+.conversa-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 20px;
+    gap: 15px;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-abrir-chat {
+    background-color: #BB0000;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-abrir-chat:hover {
+    background-color: #990000;
+}
+
+.conversa-right .horario {
+    font-size: 14px;
+    color: #888;
+    font-weight: 400;
+}
+
+.conversa-right i {
+  font-size: 24px;
+  color: #6b4e9c;
+}
+/* Container do Botão Redondo */
+.icon-btn {
+  width: 45px;
+  height: 45px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  border: none;
+}
+
+.icon-btn i {
+  font-size: 20px;
+  color: #333333 !important; /* Use !important para vencer qualquer estilo global */
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+}
+
+.icon-btn:hover i {
+  color: #BB0000 !important;
+}

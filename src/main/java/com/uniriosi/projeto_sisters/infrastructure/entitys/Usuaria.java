@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "usuaria")
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuaria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

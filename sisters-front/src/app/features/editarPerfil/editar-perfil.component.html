@@ -1,0 +1,107 @@
+<header class="header">
+
+  <img src="assets/logo.png" alt="Logo" class="logo" />
+  <nav class="menu">
+
+    <a routerLink="/institucional">Página institucional</a>
+    <a routerLink="/noticias">Notícias</a>
+    <a routerLink="/materiais">Materiais Acadêmicos</a>
+    <a routerLink="/forum">Fórum</a>
+    <a routerLink="/mensagens">Mensagens</a>
+  </nav>
+
+  <div class="icons-right">
+    <a routerLink="/atualizarperfil" class="icon-btn" title="Gerenciar Perfil">
+      <i class="fa-regular fa-user"></i>
+    </a>
+  </div>
+</header>
+
+<div class="content-wrapper">
+  <form [formGroup]="form" class="perfil-container">
+    <div class="header-perfil">
+        <h2>Seu Perfil</h2>
+    </div>
+    <div class="linha-inputs">
+        <div class="campo-input">
+            <label>Nome completo</label>
+            <input type="text" formControlName="nome" />
+        </div>
+        <div class="campo-input">
+            <label>Período</label>
+            <input type="text" formControlName="semestre" />
+        </div>
+    </div>
+
+    <div class="secao-full">
+      <label>Biografia</label> <textarea rows="5" formControlName="bioCurta" placeholder="Fale um pouco sobre você..."></textarea>
+    </div>
+
+    <div class="grid-duplo">
+        <div class="coluna-grid">
+            <h3>Suas áreas de interesse</h3>
+            <div class="tags-container">
+                <span
+                  class="tag"
+                  *ngFor="let interesse of listaInteresses"
+                  [class.tag-ativa]="form.value.interesses.includes(interesse)"
+                  (click)="toggleInteresse(interesse)">
+                  {{ interesse }}
+                </span>
+            </div>
+        </div>
+
+        <div class="coluna-grid">
+            <h3>Suas habilidades</h3>
+            <div class="tags-container">
+                <span
+                  class="tag"
+                  *ngFor="let habilidade of listaHabilidades"
+                  [class.tag-ativa]="form.value.habilidades.includes(habilidade)"
+                  (click)="toggleHabilidade(habilidade)">
+                  {{ habilidade }}
+                </span>
+            </div>
+        </div>
+      </div>
+
+     <div class="grid1-duplo">
+
+  <div class="coluna1-grid">
+      <h3>Seu Papel</h3>
+      <select formControlName="papel" class="select-papel">
+          <option value="" disabled>Selecione seu papel</option>
+          <option *ngFor="let papel of listaPapeis" [value]="papel">
+              {{ papel }}
+          </option>
+      </select>
+  </div>
+
+  <div class="coluna1-grid">
+      <h3>Privacidade do Perfil</h3>
+      <div class="botoes-privacidade">
+          <button
+            type="button"
+            class="priv-btn"
+            [class.ativa]="form.value.preferenciasPriv"
+            (click)="togglePrivacidade(true)">
+            Privado
+          </button>
+
+          <button
+            type="button"
+            class="priv-btn"
+            [class.ativa]="!form.value.preferenciasPriv"
+            (click)="togglePrivacidade(false)">
+            Público
+          </button>
+      </div>
+  </div>
+
+</div>
+
+<div class="acoes">
+  <button type="button" class="btn-excluir" (click)="excluir()">Excluir Perfil</button>
+  <button type="button" class="btn-salvar" (click)="salvar()">Salvar Alterações</button>
+  <button type="button" class="btn-logout" (click)="sair()">Sair</button>
+</div>

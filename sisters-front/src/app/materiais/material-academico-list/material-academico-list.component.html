@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<div class="page-banner">
+  <div class="banner-content">
+    <h1 class="page-title">Materiais Acadêmicos</h1>
+
+    <a routerLink="/materiais/compartilhar" class="add-btn" title="Compartilhar um novo material">
+      <i class="fa-solid fa-circle-plus"></i>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="materials-list" *ngIf="materiais.length > 0; else noData">
+
+    <div *ngFor="let material of materiais" class="material-card">
+
+      <div class="card-thumbnail">
+        <img src="/assets/doc-placeholder.png" alt="Prévia">
+        <span class="page-badge">{{ material.tipo || 'PDF' }}</span>
+      </div>
+
+      <div class="card-info">
+        <h3 class="material-title">{{ material.titulo | uppercase }}</h3>
+
+        <div class="author-info">
+          <img src="/assets/avatar-placeholder.png" alt="Avatar da autora" class="avatar-img">
+          <span class="author-name">{{ material.autora?.nome || 'Usuária' }}</span>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <a [href]="material.linkArquivo" target="_blank" title="Acessar Material">
+          <i class="fa-regular fa-floppy-disk action-icon"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="empty-state">
+      <p>Nenhum material aprovado encontrado.</p>
+    </div>
+  </ng-template>
+
+</div>
+
+<app-footer></app-footer>

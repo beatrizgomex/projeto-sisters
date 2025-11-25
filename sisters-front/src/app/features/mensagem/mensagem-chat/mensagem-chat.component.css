@@ -1,0 +1,174 @@
+
+:host {
+    font-family: 'Inter', sans-serif;
+    display: block;
+}
+
+/* ====== 2. ESTILOS DO HEADER (CORRIGIDO) ====== */
+.header {
+    width: 100%;
+    height: 80px; /* Defini uma altura fixa para garantir alinhamento vertical perfeito */
+    background-color: #E8B3B9; /* Rosa Claro */
+    display: flex;
+    justify-content: space-between; /* Logo na ponta esquerda, Ícones na ponta direita */
+    align-items: center; /* Centraliza verticalmente todos os itens */
+    padding: 0 40px; /* Padding apenas lateral, altura controlada pelo height */
+    box-sizing: border-box;
+    position: relative; /* Necessário para centralizar o menu de forma absoluta */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Um detalhe sutil de sombra */
+}
+
+.logo {
+    height: 75px; /* Ajuste fino na altura */
+    width: auto;
+    display: block;
+    /* Removemos margin-right pois o layout agora é absoluto */
+}
+
+.menu {
+    /* TRUQUE PARA CENTRALIZAÇÃO PERFEITA */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre os links controlado pelo gap, não por margin */
+    height: 100%;
+}
+
+.menu a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    /* Configuração para o efeito de borda embaixo sem pular a linha */
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 3px solid transparent; /* Reserva espaço para a borda */
+}
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efeito hover suave */
+}
+
+.menu a.active {
+    font-weight: 700;
+    border-bottom: 3px solid #BB0000; /* Vermelho Escuro */
+    color: #BB0000;
+    background-color: rgba(255, 255, 255, 0.15); /* Destaque sutil no fundo */
+}
+
+.icons-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.extra-icon {
+    height: 65px; /* Ajuste fino na altura */
+    width: auto;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.icons-right .fa-user {
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.icons-right .fa-user:hover {
+    color: #BB0000;
+}
+
+/* ===== CHAT ===== */
+.chat-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fefefe;
+  height: 70vh;   /* um pouco menor que antes */
+  overflow: hidden;
+}
+
+.chat-title {
+  padding: 15px 20px;
+  background-color: rgba(232, 179, 185, 0.28);
+  color: #BB0000;
+  margin: 0;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+.mensagens {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mensagem-logada {
+  align-self: flex-end;
+  background-color: #bb0000;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 15px 15px 0 15px;
+  max-width: 60%;
+  word-wrap: break-word;
+}
+
+.mensagem-outra {
+  align-self: flex-start;
+  background-color: #eee;
+  color: #000;
+  padding: 10px 15px;
+  border-radius: 15px 15px 15px 0;
+  max-width: 60%;
+  word-wrap: break-word;
+}
+
+.data-msg {
+  font-size: 10px;
+  margin-top: 3px;
+  display: block;
+  text-align: right;
+  opacity: 0.7;
+}
+
+/* ===== FORMULARIO NOVA MENSAGEM ===== */
+.nova-msg-form {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.nova-msg-form input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  outline: none;
+}
+
+.nova-msg-form button {
+  background-color: #bb0000;
+  color: #fff;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nova-msg-form button:hover {
+  background-color: #a00000;
+}

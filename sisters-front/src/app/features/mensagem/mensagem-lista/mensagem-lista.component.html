@@ -1,0 +1,50 @@
+<header class="header">
+
+  <img src="assets/logo.png" alt="Logo" class="logo" />
+  <nav class="menu">
+
+    <a routerLink="/institucional">Página institucional</a>
+    <a routerLink="/noticias">Notícias</a>
+    <a routerLink="/materiais">Materiais Acadêmicos</a>
+    <a routerLink="/forum">Fórum</a>
+    <a routerLink="/mensagens" class = active>Mensagens</a>
+  </nav>
+
+  <div class="icons-right">
+    <a routerLink="/atualizarperfil" class="icon-btn" title="Gerenciar Perfil">
+      <i class="fa-regular fa-user"></i>
+    </a>
+  </div>
+</header>
+
+
+<!-- TÍTULO PRINCIPAL -->
+<h1 class="titulo">Mensagens</h1>
+
+<div class="lista-container">
+  <div
+    class="card-conversa"
+    *ngFor="let c of conversas"
+    (click)="abrirConversa(c.usuaria.idUsuaria)"
+  >
+    <div class="conversa-left">
+      <h3 class="nome-usuaria">{{ c.usuaria.nome }}</h3>
+
+      <p class="ultima-msg" *ngIf="c.ultimaMensagem; else semMensagem">
+        {{ c.ultimaMensagem.conteudo }}
+      </p>
+
+      <ng-template #semMensagem>
+        <p class="ultima-msg vazio">Nenhuma mensagem ainda</p>
+      </ng-template>
+    </div>
+
+    <div class="conversa-right">
+      <span class="horario" *ngIf="c.ultimaMensagem">
+        {{ formatarHorario(c.ultimaMensagem.dataEnvio) }}
+      </span>
+      <button class="btn-abrir-chat">Abrir Chat</button>
+      <i class="fa-regular fa-user"></i>
+    </div>
+  </div>
+</div>
