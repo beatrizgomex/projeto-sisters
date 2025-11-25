@@ -16,6 +16,7 @@ public class Mensagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long idMensagem;
 
     @Column(nullable = false)
@@ -25,7 +26,8 @@ public class Mensagem {
     private LocalDateTime dataEnvio;
 
     @Column(nullable = false)
-    private boolean statusLeitura;
+    private boolean statusLeitura = false;
+
 
     @ManyToOne
     @JoinColumn(name = "remetente_id", nullable = false)

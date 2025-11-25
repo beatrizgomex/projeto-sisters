@@ -6,7 +6,6 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 @AllArgsConstructor
@@ -49,7 +48,8 @@ public class Usuaria {
     private List<String> habilidades;
 
     @Column(nullable = false)
-    private Boolean preferenciasPriv;
+    private Boolean preferenciasPriv = true;
+
 
     @ManyToMany
     @JoinTable(name = "amizade",

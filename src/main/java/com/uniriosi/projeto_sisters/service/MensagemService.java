@@ -4,7 +4,6 @@ import com.uniriosi.projeto_sisters.infrastructure.entitys.Mensagem;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.MensagemRepository;
 import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
-import com.uniriosi.projeto_sisters.service.AmizadeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,19 +16,13 @@ public class MensagemService {
 
     private final MensagemRepository mensagemRepository;
     private final UsuariaRepository usuariaRepository;
-    private final AmizadeService amizadeService;
 
-    public MensagemService(MensagemRepository mensagemRepository, UsuariaRepository usuariaRepository, AmizadeService amizadeService) {
+    public MensagemService(MensagemRepository mensagemRepository, UsuariaRepository usuariaRepository) {
         this.mensagemRepository = mensagemRepository;
         this.usuariaRepository = usuariaRepository;
-        this.amizadeService = amizadeService;
     }
 
     public Mensagem enviarMensagem(Long idRemetente, Long idDestinatario, String conteudo){
-
-        if (!amizadeService.saoAmigas(idRemetente, idDestinatario)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Você só pode enviar mensagem para amigas.");
-        }
 
         if (idDestinatario == null) {
             throw new ResponseStatusException(

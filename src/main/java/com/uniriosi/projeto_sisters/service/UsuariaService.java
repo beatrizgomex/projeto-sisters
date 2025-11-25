@@ -1,8 +1,10 @@
 package com.uniriosi.projeto_sisters.service;
+
 import com.uniriosi.projeto_sisters.controller.dto.request.LoginRequest;
 import com.uniriosi.projeto_sisters.controller.dto.request.UsuariaRequest;
 import com.uniriosi.projeto_sisters.controller.dto.request.UsuariaUpdateRequest;
 import com.uniriosi.projeto_sisters.controller.dto.response.UsuariaResponse;
+import com.uniriosi.projeto_sisters.exception.ResourceNotFoundException;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Aluna;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.AlunaRepository;
@@ -21,12 +23,14 @@ public class UsuariaService {
     private final PasswordEncoder passwordEncoder;
     private static final String UNIRIO_EMAIL = ".*@(edu\\.unirio\\.br|uniriotec\\.br|unirio\\.br)$";
     private static final String ALUNA_EMAIL = ".*@(edu\\.unirio\\.br)$";
+    private static final String MADRINHA_PAPEL_ACOLHIMENTO = "VETERANA";
 
 
     public UsuariaService(UsuariaRepository usuariaRepository, AlunaRepository alunaRepository, PasswordEncoder passwordEncoder) {
         this.usuariaRepository = usuariaRepository;
         this.alunaRepository = alunaRepository;
         this.passwordEncoder = passwordEncoder;
+
     }
 
     public Usuaria cadastrar(UsuariaRequest usuaria) {
@@ -121,6 +125,7 @@ public class UsuariaService {
                     HttpStatus.NOT_FOUND,
                     "Usuária não encontrada"
             );
+
         }
         usuariaRepository.deleteById(id);
     }
@@ -128,6 +133,8 @@ public class UsuariaService {
     public List<Usuaria> buscarPerfil(String nome) {
         return usuariaRepository.findByNomeContainingIgnoreCase(nome);
     }
+
+
 
     public UsuariaResponse convertToResponse(Usuaria usuaria) {
         UsuariaResponse.UsuariaResponseBuilder builder = UsuariaResponse.builder()
@@ -166,4 +173,15 @@ public class UsuariaService {
         }
         return usuaria;
     }
+
+    public Usuaria buscarPorId(Long idUsuaria) {
+        return usuariaRepository.findById(idUsuaria)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuária não encontrada com ID: " + idUsuaria));
+    }
+
+    public List<Usuaria> findMadrinhaVeteranaCandidates() {
+        return usuariaRepository.findByPapelAcolhimento(MADRINHA_PAPEL_ACOLHIMENTO);
+    }
+
 }
+

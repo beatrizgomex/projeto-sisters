@@ -1,19 +1,24 @@
 package com.uniriosi.projeto_sisters.infrastructure.entitys;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
+@Table(name = "aluna")
 
+@SuperBuilder
 @Entity
+@PrimaryKeyJoinColumn(name = "id_usuaria")
 public class Aluna extends Usuaria{
+
+    @Id
+    @Column(name = "id_usuaria")
+    private Long idUsuaria;
 
     @Column(nullable = false)
     private String curso;
