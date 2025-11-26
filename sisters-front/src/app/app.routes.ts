@@ -12,14 +12,19 @@ import { Cadastro } from './features/cadastro/cadastro';
 import { EditarPerfilComponent } from './features/editarPerfil/editar-perfil.component';
 import { HomeComponent } from './Buscar/home/home.component';
 import { SearchComponent } from './Buscar/components/search/search.component';
-import { Login } from './Buscar/components/login/login';
-import { Cadastro } from './Buscar/components/cadastro/cadastro';
 import { PerfilComponent } from './Buscar/components/perfil/perfil.component';
+import { NotificacoesComponent } from './notificacoes/notificacoes.component';
 
 
 export const routes: Routes = [
   // Rota Padrão (Redireciona para noticias)
   { path: '', redirectTo: '/noticias', pathMatch: 'full' },
+
+  //Rota da página institucional
+  { path: 'institucional', component: HomeComponent },
+
+  //Rota de notificações
+  { path: 'notificacoes', component: NotificacoesComponent },
 
   // Rotas de Notícias
   { path: 'noticias', component: NoticiasListComponent },
@@ -38,8 +43,6 @@ export const routes: Routes = [
   { path: '**', redirectTo: '/login' },
 
   //Rotas das páginas de busca 
-  { path: '', component: HomeComponent },
-
   {
   path: 'buscar',
   loadComponent: () =>
@@ -53,13 +56,6 @@ export const routes: Routes = [
     import('./Buscar/components/search-results/search-results.component')
       .then(c => c.SearchResultsComponent)
   },
-
-  { path: 'login', component: Login },
-  { path: 'cadastro', component: Cadastro },
-  { path: 'perfil/:id', component: PerfilComponent },
-
-  { path: '**', redirectTo: '' } 
-
 
 ];
 

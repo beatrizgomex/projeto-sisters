@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from '../../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })

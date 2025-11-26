@@ -1,0 +1,11 @@
+.card.nao-lida {
+  background-color: #ffe8c6;
+  border-left: 4px solid #ff9800;
+}
+
+.titulo {
+    font-size: 32px;
+    color: #b0000d;
+    font-weight: 800;
+    margin-bottom: 10px;
+}

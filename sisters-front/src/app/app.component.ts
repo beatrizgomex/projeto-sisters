@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './Buscar/components/header/header.component';
+import { HeaderComponent } from './shared/header/header.component';
 import { HeroComponent } from './Buscar/components/hero/hero.component';
 import { MdunirioComponent } from './Buscar/components/mdunirio/mdunirio.component';
 import { FuncionaComponent } from './Buscar/components/funciona/funciona.component';
 import { AcolhimentoComponent } from './Buscar/components/acolhimento/acolhimento.component';
-import { FooterComponent } from './Buscar/components/footer/footer.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',

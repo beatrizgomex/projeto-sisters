@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<div class="container">
+
+  <h2 class = "titulo">Minhas Notificações</h2>
+
+  <div *ngIf="notificacoes.length === 0" class="no-results">
+    Nenhuma notificação no momento.
+  </div>
+
+  <div *ngIf="notificacoes.length > 0">
+
+    <div class="card"
+         *ngFor="let n of notificacoes"
+         (click)="abrirNotificacao(n)"
+         [class.nao-lida]="!n.lida">
+
+      <h3>
+        {{ n.mensagem }}
+      </h3>
+
+      <p class="data">
+        {{ n.data | date:'dd/MM/yyyy HH:mm' }}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

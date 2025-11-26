@@ -17,6 +17,9 @@
 
     <a routerLink="/notificacoes" class="icon-btn" title="Notificações">
       <i class="fa-regular fa-bell"></i>
+      <span *ngIf="contador > 0" class="badge">
+        {{ contador }}
+      </span>
     </a>
 
     <a routerLink="/perfil" class="icon-btn" title="Gerenciar Perfil">
