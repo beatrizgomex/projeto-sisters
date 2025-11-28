@@ -4,99 +4,32 @@
     display: block;
 }
 
-/* ====== 2. ESTILOS DO HEADER (CORRIGIDO) ====== */
-.header {
-    width: 100%;
-    height: 80px;
-    background-color: #E8B3B9;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    box-sizing: border-box;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.logo {
-    height: 75px;
-    width: auto;
-    display: block;
-}
-
-.menu {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    height: 100%;
-}
-
-.menu a {
-    text-decoration: none;
-    font-size: 15px;
-    color: #fff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    border-bottom: 3px solid transparent;
-}
-
-.menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.menu a.active {
-    font-weight: 700;
-    border-bottom: 3px solid #BB0000;
-    color: #BB0000;
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.icons-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.extra-icon {
-    height: 65px;
-    width: auto;
-    display: block;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-}
-
-.icons-right .fa-user {
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.icons-right .fa-user:hover {
-    color: #BB0000;
-}
-
-
 /* ===== TÍTULO PRINCIPAL ===== */
 
-.titulo {
+.page-banner {
   width: 100%;
-  background-color: rgba(232, 179, 185, 0.28);
-  padding: 25px 40px;
-  box-sizing: border-box;
-  margin: 0;
-  font-size: 28px;
-  color: #BB0000;
+  background-color: #F9EAEB; /* Rosa bem claro, conforme a imagem */
+  padding: 20px 0;
+  border-bottom: 1px solid #EBCBCF;
+  margin-bottom: 40px; /* Espaço entre o banner e a lista */
+}
+
+.banner-content {
+  max-width: 1200px; /* Mesma largura do conteúdo principal */
+  margin: 0 auto;    /* Centraliza o conteúdo dentro da faixa */
+  padding: 0 50px;   /* Alinhado com o Header */
+  display: flex;
+  justify-content: flex-start; /* Título na ponta esq, Botão na ponta dir */
+  align-items: center;
+}
+
+.page-title {
+  color: #BB0000; /* Vermelho UNIRIO */
+  font-size: 30px;
   font-weight: 700;
   font-family: 'Inter', sans-serif;
+  margin: 0;
+  align-items: center;
 }
 
 /* ===== LISTA DE CONVERSAS  ===== */
@@ -198,4 +131,45 @@
 
 .icon-btn:hover i {
   color: #BB0000 !important;
+}
+
+/* =====  SEM AMIGAS  ===== */
+
+.empty-state-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(95vh - 260px); 
+    padding: 20px;
+}
+
+.empty-state-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 550px;
+    padding: 50px;
+    border: 2px dashed #e8b3b9; /* Borda suave e estilizada */
+    border-radius: 12px;
+    background-color: #FFF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    color: #BB0000;
+    margin-bottom: 20px;
+}
+
+.empty-state-card h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.empty-state-card p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.5;
 }

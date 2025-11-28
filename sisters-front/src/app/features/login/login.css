@@ -1,8 +1,7 @@
 :host {
   height: 100%;
-  display: flex;
   font-family: 'Inter', sans-serif;
-
+  flex-direction: row;
 }
 
 .left-side {
@@ -47,7 +46,32 @@
   cursor: pointer;
 }
 
+.register-link-container {
+  width: 400px; 
+  text-align: center;
+}
+
+.register-text {
+  color: #555;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.register-link {
+  color: #b32233; /* Cor principal */
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s; 
+}
+
+.register-link:hover {
+  color: #8c1a26;
+  text-decoration: underline;
+}
+
 .right-side {
+
   flex: 2;
   background-image: url('../../../../public/imagem-login.png');
   background-size: cover;

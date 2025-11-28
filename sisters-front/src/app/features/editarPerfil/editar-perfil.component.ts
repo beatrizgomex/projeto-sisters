@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { UsuariaService } from '../../core/services/usuaria.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; // <-- Adicionado
-import { RouterLink } from '@angular/router'; // <-- Adicionado para RouterLink no template
-
+import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
 @Component({
     selector: 'app-editar-perfil',
     standalone: true, // <-- Adicionado: Tornando standalone
-    imports: [CommonModule, ReactiveFormsModule, RouterLink], // <-- CORREÇÃO PRINCIPAL
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent], // <-- CORREÇÃO PRINCIPAL
     templateUrl: './editar-perfil.component.html',
     styleUrls: ['./editar-perfil.component.css']
 })
@@ -127,7 +128,7 @@ export class EditarPerfilComponent implements OnInit {
                 // NOTE: O uso de localStorage deve ser substituído por Firestore.
                 localStorage.setItem("usuariaLogada", JSON.stringify(novoLocalStorage));
                 
-                console.log("Perfil atualizado com sucesso!");
+                alert("Perfil atualizado com sucesso!");
                 // Em ambiente real, você mostraria uma modal ou toast de sucesso.
             },
             error: (err) => {

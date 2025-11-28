@@ -148,6 +148,7 @@
   color: #666;
   margin-top: 50px;
   font-size: 18px;
+  height: calc(95vh - 318px); 
 }
 
 

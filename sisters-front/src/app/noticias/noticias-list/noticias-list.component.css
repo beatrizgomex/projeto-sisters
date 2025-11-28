@@ -156,6 +156,7 @@
   text-align: center;
   padding: 50px;
   color: #999;
+  height: calc(95vh - 308px); 
 }
 
 .empty-icon {

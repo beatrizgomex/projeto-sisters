@@ -3,12 +3,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UsuariaService } from '../../core/services/usuaria.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'; // Mantendo se for usar *ngIf/*ngFor no template
+import { inputCadastro as Input } from '../cadastro/input/input';
+
 
 @Component({
     selector: 'app-root',
     standalone: true,
     // Corrigido: RouterOutlet e Input removidos conforme warning se não estiverem no template
-    imports: [ReactiveFormsModule, CommonModule], 
+    imports: [ReactiveFormsModule, CommonModule, Input], 
     templateUrl: './cadastro.html',
     styleUrl: './cadastro.css'
 })
@@ -37,7 +39,7 @@ export class Cadastro {
 
     protected cadastro() {
         if (this.form.invalid) {
-            console.error('Por favor, preencha todos os campos corretamente.'); // Corrigido alert()
+            alert('Por favor, preencha todos os campos corretamente.'); // Corrigido alert()
             return;
         }
 
@@ -45,7 +47,7 @@ export class Cadastro {
 
         // **Validação de Senhas (Manual, por enquanto)**
         if (dadosFormulario.senha !== dadosFormulario.confirmarSenha) {
-            console.error('As senhas digitadas não coincidem.'); // Corrigido alert()
+            alert('As senhas digitadas não coincidem.'); // Corrigido alert()
             return;
         }
 
@@ -63,15 +65,15 @@ export class Cadastro {
 
         this.usuariaService.cadastrar(usuarioParaBackend).subscribe({
             next: (resposta) => {
+                alert("Cadastro realizado com sucesso, faça login")
                 console.log('Usuária cadastrada com sucesso!', resposta);
-                // Em ambiente real, use uma modal ou notificação
                 this.router.navigate(['/login']);
             },
             error: (erro) => {
-                console.error('Erro ao cadastrar:', erro);
+                alert('Erro ao cadastrar:' + erro);
                 
                 const mensagemErro = erro.error.message || 'Erro ao cadastrar. Verifique o console.';
-                console.error(`Falha no Cadastro: ${mensagemErro}`); // Corrigido alert()
+                alert(`Falha no Cadastro: ${mensagemErro}`); // Corrigido alert()
             }
         });
     }
