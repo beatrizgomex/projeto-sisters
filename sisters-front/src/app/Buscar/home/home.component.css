@@ -1,0 +1,22 @@
+.section-wrapper {
+  width: 100%;
+  padding: 0;               /* remove espaçamento geral */
+  margin: 0;                /* mantém encostado no topo */
+}
+
+/* espaço entre os components */
+.section-wrapper + .section-wrapper {
+  margin-top: 40px;
+}
+html, body {
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img, .card, table {
+  max-width: 100%;
+  overflow-x: hidden;
+}

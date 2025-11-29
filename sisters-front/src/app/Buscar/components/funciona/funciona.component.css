@@ -2,12 +2,8 @@
   padding: 70px 20px;
   text-align: center;
   font-family: "Inter", Arial, sans-serif;
-
-  /* ADICIONADO */
   max-width: 1100px;
   margin: 0 auto;
-  margin-right: 0; 
-  margin-left: 100px; /* empurra pra direita */
 }
 
 .funciona-title {

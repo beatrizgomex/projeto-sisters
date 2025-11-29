@@ -1,8 +1,12 @@
 export interface Notificacao {
   id: number;
-  tipo: 'amizade' | 'acolhimento' | 'respostaAcolhimento' | 'forum';
+  tipo: 'amizade'
+    | 'solicitacaoAcolhimento'
+    | 'respostaAcolhimento'
+    | 'respostaForum';
   mensagem: string;
-  data: Date;
+  dataCriacao: string | Date;
   lida: boolean;
-  remetenteId?: number;
+  usuariaRelacionadoId?: number;
+  referenciaId?: number;
 }

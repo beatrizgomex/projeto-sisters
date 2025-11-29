@@ -9,3 +9,27 @@
     font-weight: 800;
     margin-bottom: 10px;
 }
+
+.page-banner {
+  width: 100%;
+  background-color: #F9EAEB;
+  padding: 20px 0;
+  border-bottom: 1px solid #EBCBCF;
+  margin-bottom: 40px;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  color: #BB0000;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
