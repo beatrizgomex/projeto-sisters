@@ -74,7 +74,7 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 
 ## TESTES DE CARGA #2
 
-### Listagemm de Notícias
+### Listagem de Notícias
 
 #### Tipo de operação: leitura 
 
