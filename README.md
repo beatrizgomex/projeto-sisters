@@ -23,14 +23,15 @@
 [SecurityConfig](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/java/com/uniriosi/projeto_sisters/security/SecurityConfig.java)
 
 
-#### Data da medição: 23/11/2025
-
 #### Descrição das configurações:
 
 -   *Processador:* AMD Ryzen 7 5825U
 -   *RAM:* 16 GB
 -   *Armazenamento:* SSD (máquina local)
 
+### Medição 1
+
+#### Data da medição: 23/11/2025
 
 #### Testes de carga (SLA):
 
@@ -40,7 +41,6 @@
 [Resultados](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/inserir100.jpg)
 [Resultados](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/inserir500.jpg)
 
-
 #### Latência média por carga
 
 -   20 VUs: *6.19 ms*
@@ -48,14 +48,12 @@
 -   500 VUs: *96.3 ms*
 [Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeinserirl.jpg)
 
-
 #### Vazão média por carga
 
 -   20 VUs: *186.18*
 -   100 VUs: *897.88*
 -   500 VUs: *2303.08*
 [Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeinserirv.jpg)
-
 
 #### Concorrência
 
@@ -67,6 +65,12 @@
 #### Hipoteses
 
 Os testes mostram que, acima de 100 usuários virtuais, a latência aumenta bastante. Isso pode acontecer por alguns motivos: o event loop do Node.js pode estar sendo bloqueado por operações síncronas ou muito pesadas de CPU; o sistema pode estar enfrentando gargalos de I/O, especialmente em operações de banco de dados; o hardware também pode ter chegado ao limite, com CPU atingindo 100% em cargas maiores e a falta de cache faz com que operações repetidas fiquem mais lentas.
+
+#### Otimização realizada
+
+O código atualizado é superior porque melhora a velocidade, a limpeza e a robustez do sistema. O e-mail agora é processado e verificado apenas uma vez, e a checagem de e-mail duplicado é feita diretamente pelo banco de dados usando a restrição UNIQUE, o que elimina uma consulta extra e reduz o gargalo de processamento. A lógica de validação de domínio (UNIRIO vs. EDU.UNIRIO) foi simplificada, tornando as regras mais claras e evitando caminhos de execução complexos. Além disso, a inclusão de um try/catch protege a operação de salvamento contra erros de concorrência, tornando o fluxo mais confiável e pronto para alta demanda.
+
+### Medição 2
 
 ## TESTES DE CARGA #2
 
