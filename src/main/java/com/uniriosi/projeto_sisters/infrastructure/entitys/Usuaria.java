@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 @Table(name = "usuaria")
+@Inheritance(strategy = InheritanceType.JOINED)
 
 @Entity
 public class Usuaria {
