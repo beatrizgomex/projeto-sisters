@@ -9,6 +9,7 @@ import com.uniriosi.projeto_sisters.infrastructure.entitys.Aluna;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.AlunaRepository;
 import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.server.ResponseStatusException;
@@ -35,52 +36,53 @@ public class UsuariaService {
 
     public Usuaria cadastrar(UsuariaRequest usuaria) {
 
-        if(!usuaria.getEmail().toLowerCase().matches(UNIRIO_EMAIL)) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Email nao esta no dominio UNIRIO"
-            );
-        }
-        if(usuariaRepository.existsByEmail(usuaria.getEmail())) {
-            throw new ResponseStatusException(
-                    HttpStatus.CONFLICT, "Email já cadastrado"
-            );
-        }
+        String email = usuaria.getEmail().toLowerCase();
+        boolean emailUsuaria = email.matches(UNIRIO_EMAIL);
+        boolean emailAluna = email.matches(ALUNA_EMAIL);
         String senhaCrip = passwordEncoder.encode(usuaria.getSenha());
 
-        if ("Aluna".equalsIgnoreCase(usuaria.getPapel()) && !usuaria.getEmail().toLowerCase().matches(ALUNA_EMAIL)) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "O papel 'Aluna' exige um email @edu.unirio.br"
-            );
-        }
+       if(!emailUsuaria) {
+           throw new ResponseStatusException(
+                   HttpStatus.BAD_REQUEST,
+                   "Somente emails do dominio da unirio sao permitidos"
+           );
+       }
 
-        if(usuaria.getEmail().matches(ALUNA_EMAIL)) {
-            Aluna aluna = Aluna.builder()
-                    .nome(usuaria.getNome())
-                    .email(usuaria.getEmail())
-                    .senha(senhaCrip)
-                    .curso(usuaria.getCurso())
-                    .semestre(usuaria.getSemestre())
-                    .papel(usuaria.getPapel())
-                    .papelAcolhimento(usuaria.getPapelAcolhimento())
-                    .bioCurta(usuaria.getBioCurta())
-                    .preferenciasPriv(usuaria.getPreferenciasPriv())
-                    .interesses(usuaria.getInteresses())
-                    .habilidades(usuaria.getHabilidades())
-                    .build();
-            return alunaRepository.save(aluna);
-        } else {
-            Usuaria usuariaCriada = Usuaria.builder()
-                    .nome(usuaria.getNome())
-                    .email(usuaria.getEmail())
-                    .senha(senhaCrip)
-                    .papel(usuaria.getPapel())
-                    .papelAcolhimento(usuaria.getPapelAcolhimento())
-                    .bioCurta(usuaria.getBioCurta())
-                    .preferenciasPriv(usuaria.getPreferenciasPriv())
-                    .interesses(usuaria.getInteresses())
-                    .habilidades(usuaria.getHabilidades())
-                    .build();
-            return usuariaRepository.save(usuariaCriada);
+        try {
+            if (emailAluna) {
+                Aluna aluna = Aluna.builder()
+                        .nome(usuaria.getNome())
+                        .email(email)
+                        .senha(senhaCrip)
+                        .curso(usuaria.getCurso())
+                        .semestre(usuaria.getSemestre())
+                        .papel(usuaria.getPapel())
+                        .papelAcolhimento(usuaria.getPapelAcolhimento())
+                        .bioCurta(usuaria.getBioCurta())
+                        .preferenciasPriv(usuaria.getPreferenciasPriv())
+                        .interesses(usuaria.getInteresses())
+                        .habilidades(usuaria.getHabilidades())
+                        .build();
+                return alunaRepository.save(aluna);
+            } else {
+                Usuaria usuariaCriada = Usuaria.builder()
+                        .nome(usuaria.getNome())
+                        .email(email)
+                        .senha(senhaCrip)
+                        .papel(usuaria.getPapel())
+                        .papelAcolhimento(usuaria.getPapelAcolhimento())
+                        .bioCurta(usuaria.getBioCurta())
+                        .preferenciasPriv(usuaria.getPreferenciasPriv())
+                        .interesses(usuaria.getInteresses())
+                        .habilidades(usuaria.getHabilidades())
+                        .build();
+                return usuariaRepository.save(usuariaCriada);
+            }
+        } catch (DataIntegrityViolationException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Email já cadastrado"
+            );
         }
     }
 
