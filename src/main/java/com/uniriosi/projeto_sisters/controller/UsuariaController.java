@@ -28,6 +28,7 @@ public class UsuariaController {
         this.usuariaRepository = usuariaRepository;
     }
 
+
     @PostMapping
     public ResponseEntity<UsuariaResponse> cadastrar(@RequestBody UsuariaRequest usuariaRequest) {
         Usuaria novaUsuaria = usuariaService.cadastrar(usuariaRequest);
@@ -47,18 +48,18 @@ public class UsuariaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuaria>> buscarPerfil(@RequestParam String nome ) {
+    public ResponseEntity<List<UsuariaResponse>> buscarPerfil(@RequestParam String nome ) {
         List<Usuaria> usuariaEncontradas = usuariaService.buscarPerfil(nome);
 
         if (usuariaEncontradas.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok(List.of());
         }
 
         List<UsuariaResponse> responses = usuariaEncontradas.stream()
                 .map(usuariaService::convertToResponse)
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(usuariaEncontradas);
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")

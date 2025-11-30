@@ -9,8 +9,6 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "aluna")
-
 @SuperBuilder
 @Entity
 @PrimaryKeyJoinColumn(name = "id_usuaria")

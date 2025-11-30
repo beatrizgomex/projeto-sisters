@@ -1,15 +1,19 @@
 package com.uniriosi.projeto_sisters.service;
 
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Amizade;
+import com.uniriosi.projeto_sisters.infrastructure.entitys.TipoNotificacao;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.AmizadeRepository;
 import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
+import com.uniriosi.projeto_sisters.service.NotificacaoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class AmizadeService {
@@ -19,6 +23,8 @@ public class AmizadeService {
     @Autowired
     private AmizadeRepository amizadeRepository;
 
+    @Autowired
+    private NotificacaoService notificacaoService;
 
 
     public AmizadeService(AmizadeRepository amizadeRepository, UsuariaRepository usuariaRepository) {
@@ -45,7 +51,16 @@ public class AmizadeService {
                 .status("PENDENTE")
                 .build();
 
-        return amizadeRepository.save(novaAmizade);
+        Amizade amizadeSalva = amizadeRepository.save(novaAmizade);
+
+        notificacaoService.criarNotificacao(
+                solicitada.getIdUsuaria(),              // destinatária
+                TipoNotificacao.AMIZADE,
+                solicitante.getNome() + " te enviou uma solicitação de amizade",
+                solicitante.getIdUsuaria()
+        );
+
+        return amizadeSalva;
     }
 
     public Amizade aceitarAmizade(Long idAmizade, Long idUsuaria) {
