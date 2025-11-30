@@ -6,11 +6,13 @@ import { Mensagem } from '../../../core/models/mensagem.model';
 import { MensagemRequest } from '../../../core/models/request/mensagemRequest.model';
 import { UsuariaService } from '../../../core/services/usuaria.service';
 import { CommonModule } from '@angular/common'; // <-- Adicionado
+import { HeaderComponent } from '../../../shared/header/header.component';
+import { FooterComponent } from '../../../shared/footer/footer.component';
 
 @Component({
     selector: 'app-mensagem-chat',
     standalone: true, // <-- Adicionado: Tornando standalone
-    imports: [CommonModule, ReactiveFormsModule, RouterLink], // <-- CORREÇÃO PRINCIPAL
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, HeaderComponent, FooterComponent], // <-- CORREÇÃO PRINCIPAL
     templateUrl: './mensagem-chat.component.html',
     styleUrls: ['./mensagem-chat.component.css']
 })

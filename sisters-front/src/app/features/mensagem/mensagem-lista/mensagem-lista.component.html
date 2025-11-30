@@ -1,27 +1,14 @@
-<header class="header">
-
-  <img src="assets/logo.png" alt="Logo" class="logo" />
-  <nav class="menu">
-
-    <a routerLink="/institucional">Página institucional</a>
-    <a routerLink="/noticias">Notícias</a>
-    <a routerLink="/materiais">Materiais Acadêmicos</a>
-    <a routerLink="/forum">Fórum</a>
-    <a routerLink="/mensagens" class = active>Mensagens</a>
-  </nav>
-
-  <div class="icons-right">
-    <a routerLink="/atualizarperfil" class="icon-btn" title="Gerenciar Perfil">
-      <i class="fa-regular fa-user"></i>
-    </a>
-  </div>
-</header>
-
+<app-header></app-header>
 
 <!-- TÍTULO PRINCIPAL -->
-<h1 class="titulo">Mensagens</h1>
+<div class="page-banner">
+  <div class="banner-content">
+    <h1 class="page-title">Mensagens</h1>
+  </div>
+</div>
 
-<div class="lista-container">
+
+<div class="lista-container" *ngIf="temConversas">
   <div
     class="card-conversa"
     *ngFor="let c of conversas"
@@ -47,4 +34,13 @@
       <i class="fa-regular fa-user"></i>
     </div>
   </div>
+</div>
+
+<div class="empty-state-container" *ngIf="!temConversas">
+    <div class="empty-state-card">
+        <i class="fas fa-heart-broken empty-icon"></i>
+        <h2>Parece que você ainda não tem amigas!</h2>
+        <p>Para enviar mensagens, você precisa se conectar com outras usuárias primeiro.</p>
+        <p>Que tal explorar nossa comunidade?</p>
+    </div>
 </div>

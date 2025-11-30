@@ -17,8 +17,7 @@ import { NotificacoesComponent } from './notificacoes/notificacoes.component';
 
 
 export const routes: Routes = [
-  // Rota Padrão (Redireciona para noticias)
-  { path: '', redirectTo: '/noticias', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 
   //Rota da página institucional
   { path: 'institucional', component: HomeComponent },

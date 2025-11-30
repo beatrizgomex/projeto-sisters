@@ -7,12 +7,14 @@ import { Router, RouterLink } from '@angular/router'; // <-- Adicionado RouterLi
 import { forkJoin, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common'; // <-- Adicionado
+import { HeaderComponent } from '../../../shared/header/header.component';
+import { FooterComponent } from '../../../shared/footer/footer.component';
 
 
 @Component({
     selector: 'app-mensagem-lista',
     standalone: true, // <-- Adicionado: Tornando standalone
-    imports: [CommonModule, RouterLink], // <-- CORREÇÃO PRINCIPAL
+    imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent], // <-- CORREÇÃO PRINCIPAL
     templateUrl: './mensagem-lista.component.html',
     styleUrls: ['./mensagem-lista.component.css'],
 })
@@ -22,6 +24,7 @@ export class MensagensListComponent implements OnInit {
     usuarias: Usuaria[] = [];
     conversas: { usuaria: Usuaria, ultimaMensagem: Mensagem | null }[] = [];
     usuariaLogadaId!: number;
+    temConversas: boolean = false;
 
     constructor(
         private mensagemService: MensagemService,
@@ -44,6 +47,8 @@ export class MensagensListComponent implements OnInit {
     carregarListaDeConversas(): void {
         this.mensagemService.buscarAmigas(this.usuariaLogadaId).pipe(
             switchMap(amigas => {
+                this.temConversas = amigas.length > 0;
+
                 if (amigas.length === 0) {
                     return new Observable<any>();
                 }

@@ -11,8 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@Table(name = "usuaria")
 
+@Table(name = "usuaria")
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 public class Usuaria {
     @Id

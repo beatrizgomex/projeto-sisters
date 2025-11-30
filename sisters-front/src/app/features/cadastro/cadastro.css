@@ -2,6 +2,7 @@
   height: 100%;
   display: flex;
   font-family: 'Inter', sans-serif;
+  flex-direction: row;
 }
 
 .left-side {

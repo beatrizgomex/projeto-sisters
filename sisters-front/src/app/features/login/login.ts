@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariaService } from '../../core/services/usuaria.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common'; // Mantendo se for usar *ngIf/*ngFor no template
+import { InputLogin as Input } from '../login/input/input';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    // Corrigido: RouterOutlet e Input removidos conforme warning se não estiverem no template
-    imports: [ReactiveFormsModule, CommonModule], 
+    imports: [ReactiveFormsModule, CommonModule, Input, RouterLink], 
     templateUrl: './login.html',
     styleUrl: './login.css'
 })
@@ -30,7 +30,7 @@ export class Login {
 
     protected login() {
         if(this.form.invalid) {
-            console.error('Por favor, preencha o e-mail e a senha corretamente.'); // Corrigido alert()
+            alert('Por favor, preencha o e-mail e a senha corretamente.'); // Corrigido alert()
             return; 
         }
     
@@ -43,15 +43,14 @@ export class Login {
                 // NOTE: O uso de localStorage deve ser substituído por Firestore.
                 localStorage.setItem('usuariaLogada', JSON.stringify(resposta)); 
                 
-                console.log(`Bem-vinda, ${resposta.nome}!`); // Corrigido alert()
+                alert(`Bem-vinda, ${resposta.nome}!`); // Corrigido alert()
 
-                this.router.navigate(['/perfil']); 
+                this.router.navigate(['/institucional']); 
             },
             error: (erro) => {
                 console.error('Erro no login:', erro);
-                
                 const mensagemErro = erro.error.message || 'Erro ao tentar fazer login. Verifique as credenciais.';
-                console.error(`Falha no Login: ${mensagemErro}`); // Corrigido alert()
+                alert(`Falha no Login: ${mensagemErro}`); // Corrigido alert()
             }
         });
     }
