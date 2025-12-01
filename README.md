@@ -129,13 +129,13 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 #### Latência média por carga
 -   50 VUs: *79.91 ms*
 -   100 VUs: *65.40 ms*
-[Gráfico]<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/fefd284e-ccbb-48c2-8c9d-9f0afe547cbb" />
+  <img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/fefd284e-ccbb-48c2-8c9d-9f0afe547cbb" />
 
 
 #### Vazão média por carga
 - 50 VUs: *45.10*
 - 100 VUs: *90.68*
-[Gráfico]<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/379b864e-51ab-4ed7-9635-df980a654b1b" />
+<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/379b864e-51ab-4ed7-9635-df980a654b1b" />
 
 
 #### Concorrência
@@ -154,7 +154,7 @@ Comparando a Medição 1 com os resultados atuais:
 
 Mesmo com o aumento, ambos os cenários permaneceram dentro do SLA, já que os valores de p95 ficaram abaixo de 500 ms (125.4 ms em 50 VUs e 280.97 ms em 100 VUs).
 
-####Vazão
+#### Vazão
 
 Comparação entre as medições:
 
@@ -164,7 +164,7 @@ Comparação entre as medições:
 
 Em 50 VUs houve ganho significativo, enquanto em 100 VUs ocorreu uma leve redução, possivelmente devido a saturações momentâneas do serviço ou limitações externas ao script.
 
-####Concorrência
+#### Concorrência
 
 50 VUs: min = 50 / max = 50
 
