@@ -167,6 +167,9 @@ Comparação entre as medições:
 
 Em 50 VUs houve ganho significativo, enquanto em 100 VUs ocorreu uma leve redução, possivelmente devido a saturações momentâneas do serviço ou limitações externas ao script.
 
+<img width="1390" height="590" alt="image" src="https://github.com/user-attachments/assets/ddb87b5d-4cff-4b1b-aaa1-2877bd4ce907" />
+
+
 #### Concorrência
 
 50 VUs: min = 50 / max = 50
