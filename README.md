@@ -84,6 +84,7 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 
 [NoticiaService](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/java/com/uniriosi/projeto_sisters/service/NoticiaService.java)
 
+[application.properties](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/resources/application.properties)
 
 #### Descrição das configurações:
 - Processador: 	Intel(R) Core(TM) i3-7100U
@@ -146,7 +147,7 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 
 
 ### Melhorias/otimizações
-O aumento do maximumPoolSize do Hikari de 10 para 30 reduziu significativamente a contenção por conexão.
+O aumento do maximumPoolSize do Hikari de 10 para 30 no arquivo application.properties reduziu significativamente a contenção por conexão.
 #### Latência
 Comparando a Medição 1 com os resultados atuais:
 
