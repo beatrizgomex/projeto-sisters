@@ -135,16 +135,17 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 #### Vazão média por carga
 - 50 VUs: *45.10*
 - 100 VUs: *90.68*
-[Gráfico]
+[Gráfico]<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/379b864e-51ab-4ed7-9635-df980a654b1b" />
+
 
 #### Concorrência
 
 - 50 VUs: min=50 / max=50
 - 100 VUs: min=100 / max=100
 
-#### Melhorias/otimizações
+### Melhorias/otimizações
 O aumento do maximumPoolSize do Hikari de 10 para 30 reduziu significativamente a contenção por conexão.
-- A latência representa o tempo médio de resposta das requisições durante os testes.
+####Latência
 Comparando a Medição 1 com os resultados atuais:
 
 50 VUs: aumento de 17.14 ms → 79.91 ms
@@ -153,7 +154,7 @@ Comparando a Medição 1 com os resultados atuais:
 
 Mesmo com o aumento, ambos os cenários permaneceram dentro do SLA, já que os valores de p95 ficaram abaixo de 500 ms (125.4 ms em 50 VUs e 280.97 ms em 100 VUs).
 
-- A vazão representa o número de requisições processadas por segundo.
+####Vazão
 
 Comparação entre as medições:
 
@@ -163,7 +164,7 @@ Comparação entre as medições:
 
 Em 50 VUs houve ganho significativo, enquanto em 100 VUs ocorreu uma leve redução, possivelmente devido a saturações momentâneas do serviço ou limitações externas ao script.
 
-- A quantidade de usuários virtuais simultâneos se manteve estável e de acordo com o planejado:
+####Concorrência
 
 50 VUs: min = 50 / max = 50
 
