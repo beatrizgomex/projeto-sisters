@@ -142,10 +142,12 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 
 - 50 VUs: min=50 / max=50
 - 100 VUs: min=100 / max=100
+ <img width="860" height="596" alt="image" src="https://github.com/user-attachments/assets/0ea64b91-e60b-4d63-9c90-e341c387c34d" />
+
 
 ### Melhorias/otimizações
 O aumento do maximumPoolSize do Hikari de 10 para 30 reduziu significativamente a contenção por conexão.
-####Latência
+#### Latência
 Comparando a Medição 1 com os resultados atuais:
 
 50 VUs: aumento de 17.14 ms → 79.91 ms
