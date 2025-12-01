@@ -121,10 +121,52 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 **Warm-up da JVM:** Em testes de estresse curtos, as primeiras requisições podem apresentar maior tempo de resposta devido ao período de aquecimento e otimização da JVM (JIT), o que justifica pequenas variações iniciais antes da estabilização dos tempos de resposta.
 
 **Garbage Collection:** Como o volume de respostas cresce com o número de usuários, é possível que a JVM tenha executado ciclos de Garbage Collection durante o pico de carga, resultando em oscilações momentâneas de latência.
-#### Conclusão
 
-De forma geral, os testes demonstram que a aplicação se comporta bem sob cargas moderadas, mantendo latências baixas e boa taxa de vazão até o patamar de 100 usuários simultâneos. A partir desse valor, começam a surgir indícios de saturação, especialmente no tempo de resposta, que apresenta picos bem acima da média.
+### Medição 2
 
-As hipóteses levantadas indicam que os gargalos podem estar relacionados principalmente ao lado do servidor, especialmente ao limite do pool de conexões do banco de dados, ao aquecimento inicial da JVM e a possíveis pausas de Garbage Collection durante o estresse. Esses fatores podem fazer com que parte das requisições precise aguardar antes de ser processada, aumentando temporariamente a latência.
+#### Data da medição: 30/11/2025
 
-Ainda assim, o comportamento observado está dentro do esperado para uma aplicação rodando em ambiente local com recursos limitados, e mostra que o sistema tem boa escalabilidade inicial. Para cenários de produção, recomenda-se monitoramento em profundidade (APM), ajuste fino do HikariCP, parametrização do GC e possíveis otimizações de consultas, garantindo mais estabilidade mesmo sob cargas mais intensas.
+#### Latência média por carga
+-   50 VUs: *79.91 ms*
+-   100 VUs: *65.40 ms*
+[Gráfico]<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/fefd284e-ccbb-48c2-8c9d-9f0afe547cbb" />
+
+
+#### Vazão média por carga
+- 50 VUs: *45.10*
+- 100 VUs: *90.68*
+[Gráfico]
+
+#### Concorrência
+
+- 50 VUs: min=50 / max=50
+- 100 VUs: min=100 / max=100
+
+#### Melhorias/otimizações
+O aumento do maximumPoolSize do Hikari de 10 para 30 reduziu significativamente a contenção por conexão.
+- A latência representa o tempo médio de resposta das requisições durante os testes.
+Comparando a Medição 1 com os resultados atuais:
+
+50 VUs: aumento de 17.14 ms → 79.91 ms
+
+100 VUs: aumento de 14.52 ms → 65.40 ms
+
+Mesmo com o aumento, ambos os cenários permaneceram dentro do SLA, já que os valores de p95 ficaram abaixo de 500 ms (125.4 ms em 50 VUs e 280.97 ms em 100 VUs).
+
+- A vazão representa o número de requisições processadas por segundo.
+
+Comparação entre as medições:
+
+50 VUs: 26.28 → 45.10 req/s
+
+100 VUs: 96.80 → 90.68 req/s
+
+Em 50 VUs houve ganho significativo, enquanto em 100 VUs ocorreu uma leve redução, possivelmente devido a saturações momentâneas do serviço ou limitações externas ao script.
+
+- A quantidade de usuários virtuais simultâneos se manteve estável e de acordo com o planejado:
+
+50 VUs: min = 50 / max = 50
+
+100 VUs: min = 100 / max = 100
+
+Isso confirma que o sistema suportou a concorrência configurada sem quedas de VUs, interrupções ou erros relacionados a limitação de usuários simultâneos.
