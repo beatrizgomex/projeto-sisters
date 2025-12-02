@@ -232,18 +232,18 @@ Os testes atuais demonstram que, até 100 Usuários Virtuais - VUs, o sistema es
 #### Latência média por carga
 -   20 VUs: *3.02 ms*
 -   100 VUs: *2.65 ms*
-  <img width="790" height="490" alt="image" src="" />
+<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/latenciaMedia2.jpg" />
 
   #### Vazão média por carga
 - 20 VUs: *193.13*
 - 100 VUs: *969.06*
-  <img width="790" height="490" alt="image" src="" />
+<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/vazao2.jpg" />
  
  #### Concorrência
 
 - 20 VUs: min=20 / max=20
 - 100 VUs: min=100 / max=100
-  <img width="790" height="490" alt="image" src="" />
+<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/concorrencia2.jpg" />
 
 ### Melhorias/otimizações
 A intervenção realizada na arquitetura do backend eliminou um gargalo que estava presente mesmo em cargas moderadas, resultando em uma execução de código muito mais rápida e eficiente.
@@ -255,6 +255,7 @@ Comparando a Medição 1 com os resultados atuais:
 100 VUs: redução de 7.72 ms → 2.65 ms
 
 A redução superior a 50% em ambos os cenários é um indicativo de que a otimização foi altamente eficaz. O sistema agora é muito mais rápido para processar e responder às requisições sob as mesmas condições de carga.
+<img width="1390" height="590" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/comparacaoLatencia.jpg" />
 
 #### Vazão
 
@@ -266,7 +267,7 @@ Comparação entre as medições:
 
 O sistema não apenas ficou mais rápido, mas também conseguiu processar mais requisições por segundo, especialmente no cenário de 100VUs, onde a capacidade aumentou em mais de 71 req/s. Isso comprova que a otimização permitiu que o sistema aproveitasse melhor os recursos disponíveis para completar mais tarefas
 
-<img width="1390" height="590" alt="image" src="" />
+<img width="1390" height="590" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/comparacaoVazao.jpg" />
 
 
 #### Concorrência
