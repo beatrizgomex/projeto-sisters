@@ -72,6 +72,58 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 
 ### Medição 2
 
+#### Data da medição: 30/11/2025
+
+#### Latência média por carga
+-   20 VUs: *3.02 ms*
+-   100 VUs: *2.65 ms*
+<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/latenciaMedia2.jpg" />
+
+  #### Vazão média por carga
+- 20 VUs: *193.13*
+- 100 VUs: *969.06*
+<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/vazao2.jpg" />
+ 
+ #### Concorrência
+
+- 20 VUs: min=20 / max=20
+- 100 VUs: min=100 / max=100
+<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/concorrencia2.jpg" />
+
+### Melhorias/otimizações
+A intervenção realizada na arquitetura do backend eliminou um gargalo que estava presente mesmo em cargas moderadas, resultando em uma execução de código muito mais rápida e eficiente.
+#### Latência
+Comparando a Medição 1 com os resultados atuais:
+
+20 VUs: redução de 6.19 ms → 3.02 ms
+
+100 VUs: redução de 7.72 ms → 2.65 ms
+
+A redução superior a 50% em ambos os cenários é um indicativo de que a otimização foi altamente eficaz. O sistema agora é muito mais rápido para processar e responder às requisições sob as mesmas condições de carga.
+<img width="1390" height="590" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/comparacaoLatencia.jpg" />
+
+#### Vazão
+
+Comparação entre as medições:
+
+20 VUs: 186.18 req/s → 193.13 req/s
+
+100 VUs: 897.88 req/s → 969.06 req/s
+
+O sistema não apenas ficou mais rápido, mas também conseguiu processar mais requisições por segundo, especialmente no cenário de 100VUs, onde a capacidade aumentou em mais de 71 req/s. Isso comprova que a otimização permitiu que o sistema aproveitasse melhor os recursos disponíveis para completar mais tarefas
+
+<img width="1390" height="590" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/comparacaoVazao.jpg" />
+
+
+#### Concorrência
+
+20 VUs: min = 20 / max = 20
+
+100 VUs: min = 100 / max = 100
+
+Isso confirma que o sistema suportou a concorrência configurada sem quedas de VUs, interrupções ou erros relacionados a limitação de usuários simultâneos, sendo mais estável e eficiente. 
+
+
 ## TESTES DE CARGA #2
 
 ### Listagem de Notícias
@@ -177,105 +229,5 @@ Em 50 VUs houve ganho significativo, enquanto em 100 VUs ocorreu uma leve reduç
 100 VUs: min = 100 / max = 100
 
 Isso confirma que o sistema suportou a concorrência configurada sem quedas de VUs, interrupções ou erros relacionados a limitação de usuários simultâneos.
-
-### Cadastrar Usuária
-
-#### Tipo de operação: inserir 
-
-#### Arquivos envolvidos:
-
-[UsuariaController](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/java/com/uniriosi/projeto_sisters/controller/UsuariaController.java)
-
-[UsuariaService](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/java/com/uniriosi/projeto_sisters/service/UsuariaService.java)
-
-[UsuariaRequest](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/java/com/uniriosi/projeto_sisters/controller/dto/request/UsuariaRequest.java)
-
-[UsuariaRepository](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/java/com/uniriosi/projeto_sisters/infrastructure/repository/UsuariaRepository.java)
-
-[AlunaRepository](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/java/com/uniriosi/projeto_sisters/controller/dto/request/UsuariaRequest.java)
-
-[SecurityConfig](https://github.com/beatrizgomex/projeto-sisters/blob/main/src/main/java/com/uniriosi/projeto_sisters/security/SecurityConfig.java)
-
-#### Descrição das configurações:
-
--   *Processador:* AMD Ryzen 7 5825U
--   *RAM:* 16 GB
--   *Armazenamento:* SSD (máquina local)
-
-[Script de teste](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/usuarias_todas.js)
-
-#### Latência média por carga
--   20 VUs: *3.02 ms*
--   100 VUs: *2.65 ms*
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/latenciaMedia2.jpg)
-
-#### Vazão média por carga
-- 20 VUs: *193.13*
-- 100 VUs: *969.06*
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/vazao2.jpg)
-
-#### Concorrência
-
-- 20 VUs: min=20 / max=20
-- 100 VUs: min=100 / max=100
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/concorrencia2.jpg)
-
-
-### Hipóteses
-
-Os testes atuais demonstram que, até 100 Usuários Virtuais - VUs, o sistema está operando em um estado ideal, com a Vazão escalando de forma linear 193.13 req/s -> 969.06 req/s e a Latência Média permanecendo extremamente baixa (e até ligeiramente menor, de 3.02 ms para 2.65 ms), indicando utilização eficiente dos recursos e um warm-up bem-sucedido da JVM.
-
-### Medição 2
-
-#### Data da medição: 30/11/2025
-
-#### Latência média por carga
--   20 VUs: *3.02 ms*
--   100 VUs: *2.65 ms*
-<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/latenciaMedia2.jpg" />
-
-  #### Vazão média por carga
-- 20 VUs: *193.13*
-- 100 VUs: *969.06*
-<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/vazao2.jpg" />
- 
- #### Concorrência
-
-- 20 VUs: min=20 / max=20
-- 100 VUs: min=100 / max=100
-<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/concorrencia2.jpg" />
-
-### Melhorias/otimizações
-A intervenção realizada na arquitetura do backend eliminou um gargalo que estava presente mesmo em cargas moderadas, resultando em uma execução de código muito mais rápida e eficiente.
-#### Latência
-Comparando a Medição 1 com os resultados atuais:
-
-20 VUs: redução de 6.19 ms → 3.02 ms
-
-100 VUs: redução de 7.72 ms → 2.65 ms
-
-A redução superior a 50% em ambos os cenários é um indicativo de que a otimização foi altamente eficaz. O sistema agora é muito mais rápido para processar e responder às requisições sob as mesmas condições de carga.
-<img width="1390" height="590" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/comparacaoLatencia.jpg" />
-
-#### Vazão
-
-Comparação entre as medições:
-
-20 VUs: 186.18 req/s → 193.13 req/s
-
-100 VUs: 897.88 req/s → 969.06 req/s
-
-O sistema não apenas ficou mais rápido, mas também conseguiu processar mais requisições por segundo, especialmente no cenário de 100VUs, onde a capacidade aumentou em mais de 71 req/s. Isso comprova que a otimização permitiu que o sistema aproveitasse melhor os recursos disponíveis para completar mais tarefas
-
-<img width="1390" height="590" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/comparacaoVazao.jpg" />
-
-
-#### Concorrência
-
-20 VUs: min = 20 / max = 20
-
-100 VUs: min = 100 / max = 100
-
-Isso confirma que o sistema suportou a concorrência configurada sem quedas de VUs, interrupções ou erros relacionados a limitação de usuários simultâneos, sendo mais estável e eficiente. 
 
 
