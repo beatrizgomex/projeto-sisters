@@ -154,19 +154,22 @@ Isso confirma que o sistema suportou a concorrência configurada sem quedas de V
 #### Latência média por carga
 -   50 VUs: *17.14ms*
 -   100 VUs: *14.52 ms*
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeleitural.jpg)
+<img width="1189" height="490" alt="image" src="https://github.com/user-attachments/assets/ebffccaa-0636-4979-9715-997c5e325ea4" />
+
 
 #### Vazão média por carga
 - 50 VUs: *26.28*
 - 100 VUs: *96.80*
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeleiturav.jpg)
+<img width="1189" height="490" alt="image" src="https://github.com/user-attachments/assets/a4949e66-a52f-49f7-95d2-0daa3403e0b9" />
+
 
 #### Concorrência
 
 - 50 VUs: min=50 / max=50
 - 100 VUs: min=100 / max=100
 
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeleiturac1.jpg)
+<img width="1389" height="590" alt="image" src="https://github.com/user-attachments/assets/6269617a-e293-42aa-82f2-69fec9560934" />
+
 
 ### Hipóteses
 **Pool de Conexões do Banco:** Mesmo sendo uma operação de leitura, o aumento de usuários pode ter pressionado o número máximo de conexões disponíveis no HikariCP (padrão do Spring, geralmente configurado para 10). Com 50 ou 100 usuários simultâneos, algumas requisições podem ter aguardado fila, elevando a latência ocasionalmente.
@@ -182,20 +185,22 @@ Isso confirma que o sistema suportou a concorrência configurada sem quedas de V
 #### Latência média por carga
 -   50 VUs: *79.91 ms*
 -   100 VUs: *65.40 ms*
-  <img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/fefd284e-ccbb-48c2-8c9d-9f0afe547cbb" />
+ <img width="1189" height="490" alt="image" src="https://github.com/user-attachments/assets/11ca8baa-5ae0-448f-a87e-b9d2a82c0d26" />
+
 
 
 #### Vazão média por carga
 - 50 VUs: *45.10*
 - 100 VUs: *90.68*
-<img width="790" height="490" alt="image" src="https://github.com/user-attachments/assets/379b864e-51ab-4ed7-9635-df980a654b1b" />
+<img width="1189" height="490" alt="image" src="https://github.com/user-attachments/assets/3895231e-6e68-4fd7-b9b0-41fc4cf5bec6" />
+
 
 
 #### Concorrência
 
 - 50 VUs: min=50 / max=50
 - 100 VUs: min=100 / max=100
- <img width="860" height="596" alt="image" src="https://github.com/user-attachments/assets/0ea64b91-e60b-4d63-9c90-e341c387c34d" />
+<img width="1389" height="590" alt="image" src="https://github.com/user-attachments/assets/412d59d9-7c19-494f-9132-dbe390d8518c" />
 
 
 ### Melhorias/otimizações
@@ -207,7 +212,7 @@ Comparando a Medição 1 com os resultados atuais:
 
 100 VUs: aumento de 14.52 ms → 65.40 ms
 
-Mesmo com o aumento, ambos os cenários permaneceram dentro do SLA, já que os valores de p95 ficaram abaixo de 500 ms (125.4 ms em 50 VUs e 280.97 ms em 100 VUs).
+Mesmo com o aumento, ambos os cenários permaneceram dentro do SLA, já que os valores de p95 ficaram abaixo de 500 ms.
 
 #### Vazão
 
@@ -219,7 +224,8 @@ Comparação entre as medições:
 
 Em 50 VUs houve ganho significativo, enquanto em 100 VUs ocorreu uma leve redução, possivelmente devido a saturações momentâneas do serviço ou limitações externas ao script.
 
-<img width="1390" height="590" alt="image" src="https://github.com/user-attachments/assets/ddb87b5d-4cff-4b1b-aaa1-2877bd4ce907" />
+<img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/31eea4a8-51df-4a2c-838d-0b16354ab270" />
+
 
 
 #### Concorrência
