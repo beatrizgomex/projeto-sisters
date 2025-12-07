@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<div class="page-banner">
+  <div class="banner-content">
+    <h1 class="page-title">Fórum de Discussões</h1>
+
+    <a routerLink="/forum/criar" class="add-btn" title="Criar nova pergunta">
+      <i class="fa-solid fa-plus"></i>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="news-grid" *ngIf="perguntas.length > 0; else noData">
+
+    <a *ngFor="let item of perguntas" class="news-card" [routerLink]="['/forum/topico', item.idPergunta]">
+
+      <div class="card-header">
+        <span class="tag-forum" *ngIf="item.resolvido; else tagAberta">
+          <i class="fa-solid fa-check"></i> RESOLVIDO
+        </span>
+        <ng-template #tagAberta>
+          <span class="tag-forum tag-aberta">
+            <i class="fa-solid fa-circle-dot"></i> ABERTO
+          </span>
+        </ng-template>
+        
+        <span class="forum-stats">
+          <i class="fa-solid fa-comment-dots"></i> {{ item.numeroRespostas || 0 }}
+        </span>
+      </div>
+
+      <div class="card-body">
+        <h3 class="news-title">{{ item.titulo }}</h3>
+        <p class="news-desc">{{ item.corpo | slice:0:150 }}...</p> 
+      </div>
+
+      <div class="card-footer">
+        <div class="author-info">
+          <img src="/assets/avatar-placeholder.png" class="author-avatar" alt="Avatar">
+          <span class="author-name">{{ item.autora?.nome || 'Usuário Anônimo' }}</span>
+        </div>
+
+        <div class="footer-actions">
+           <span class="news-date">
+             <i class="fa-regular fa-calendar"></i> {{ item.dataPublicacao | date:'dd/MM/yyyy' }}
+           </span>
+          
+          <button *ngIf="isAdmin || isAutora(item.autora?.idUsuaria)" 
+                  class="btn-delete" (click)="excluirPergunta(item.idPergunta); $event.stopPropagation(); $event.preventDefault();" 
+                  title="Excluir Pergunta">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <ng-template #noData>
+    <div class="alert info">
+      <i class="fa-solid fa-circle-info"></i> Não há tópicos de discussão no fórum. Seja a primeira a criar um!
+    </div>
+  </ng-template>
+
+</div>
+
+<app-footer></app-footer>

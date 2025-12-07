@@ -6,24 +6,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NotificacoesService } from '../core/services/notificacoes.service';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
-export interface Notificacao {
-  id: number;
-  tipo: 'amizade'
-    | 'solicitacaoAcolhimento'
-    | 'respostaAcolhimento'
-    | 'respostaForum';
-  mensagem: string;
-  dataCriacao: string | Date;
-  lida: boolean;
-  usuariaRelacionadoId?: number;
-  referenciaId?: number;
-}
+import { Notificacao } from '../notificacoes/notificacao.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-notificacoes',
   standalone: true,
-  imports: [HeaderComponent, DatePipe],
+  imports: [HeaderComponent, DatePipe, CommonModule],
   templateUrl: './notificacoes.component.html',
   styleUrls: ['./notificacoes.component.css']
 })

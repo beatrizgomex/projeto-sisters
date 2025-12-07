@@ -1,0 +1,270 @@
+.page-banner {
+  width: 100%;
+  background-color: #F9EAEB;
+  padding: 20px 0;
+  border-bottom: 1px solid #EBCBCF;
+  margin-bottom: 40px;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  color: #BB0000;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.back-btn {
+  font-size: 24px;
+  color: #555;
+  text-decoration: none;
+  background: white;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.container {
+  max-width: 1000px; /* Mais largo para o detalhe */
+  margin: 0 auto;
+  padding: 0 50px;
+  padding-bottom: 50px;
+}
+
+/* === 1. PERGUNTA PRINCIPAL === */
+.question-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 40px;
+}
+
+.question-title {
+  font-size: 28px;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+  font-weight: 600;
+}
+
+.author-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.date {
+  color: #888;
+}
+
+.question-body p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.attachment-link {
+  display: inline-block;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.topic-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.btn-edit {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-edit:hover {
+    background-color: #e0e0e0;
+}
+
+/* === 2. RESPOSTAS === */
+.responses-section h3 {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #BB0000;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #F9EAEB;
+}
+
+.response-card {
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+}
+
+.response-card.accepted {
+  background-color: #e6ffe6; /* Verde claro para resposta aceita */
+  border-left: 5px solid #28a745; /* Barra verde */
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.1);
+}
+
+.response-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.response-body p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.response-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    padding-top: 10px;
+    margin-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.badge-accepted {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.btn-accept {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-accept:hover {
+    background-color: #449d44;
+}
+
+.btn-like {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.btn-like:hover {
+    color: #0056b3;
+}
+
+/* === 3. FORMULÁRIO DE RESPOSTA === */
+
+.reply-form-section {
+    margin-top: 40px;
+}
+
+.reply-form-section h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.reply-form-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.reply-form-card textarea {
+    /* Reutiliza estilo de input/textarea do form */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.reply-form-card textarea:focus {
+    outline: none;
+    border-color: #BB0000;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.form-actions .submit-btn {
+  /* Reutiliza o estilo do botão de Publicar */
+  background-color: #BB0000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-actions .submit-btn:hover:not([disabled]) {
+  background-color: #880000;
+}
