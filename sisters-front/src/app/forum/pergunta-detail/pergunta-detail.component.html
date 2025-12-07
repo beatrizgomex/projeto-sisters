@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<div class="page-banner">
+  <div class="banner-content">
+    <h1 class="page-title">Tópico de Discussão</h1>
+    <a routerLink="/forum" class="back-btn" title="Voltar para o Fórum"><i class="fa-solid fa-arrow-left"></i></a>
+  </div>
+</div>
+
+<div class="container" *ngIf="pergunta">
+
+  <div class="question-card">
+    <h2 class="question-title">{{ pergunta.titulo }}</h2>
+    
+    <div class="metadata">
+      <span class="author-info">
+        <img src="/assets/avatar-placeholder.png" class="author-avatar" alt="Avatar">
+        <span class="author-name">Por: {{ pergunta.autora?.nome || 'Usuário' }}</span>
+      </span>
+      <span class="date">
+        <i class="fa-regular fa-calendar"></i> {{ pergunta.dataPublicacao | date:'dd/MM/yyyy HH:mm' }}
+      </span>
+    </div>
+
+    <div class="question-body">
+      <p>{{ pergunta.corpo }}</p>
+      <div *ngIf="pergunta.linkAnexo">
+        <a [href]="pergunta.linkAnexo" target="_blank" class="attachment-link">
+          <i class="fa-solid fa-paperclip"></i> Ver Anexo
+        </a>
+      </div>
+    </div>
+    
+    <div class="topic-actions">
+        <button *ngIf="idUsuariaLogada === pergunta.autora?.idUsuaria" class="btn-edit">
+            <i class="fa-solid fa-pen"></i> Editar
+        </button>
+        </div>
+  </div>
+
+  <div class="responses-section">
+    <h3>{{ respostas.length }} Resposta(s)</h3>
+
+    <div *ngIf="respostas.length === 0" class="alert info">
+      <i class="fa-solid fa-comment-dots"></i> Seja o primeiro a responder a esta pergunta!
+    </div>
+    
+    <div *ngFor="let resposta of respostas" class="response-card" 
+         [class.accepted]="resposta.aceita">
+      
+      <div class="response-header">
+        <span class="author-info">
+          <img src="/assets/avatar-placeholder.png" class="author-avatar" alt="Avatar">
+          <span class="author-name">{{ resposta.autora?.nome || 'Usuário' }}</span>
+        </span>
+        <span class="date">{{ resposta.dataPublicacao | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+
+      <div class="response-body">
+        <p>{{ resposta.corpo }}</p>
+      </div>
+
+      <div class="response-footer">
+        <button *ngIf="idUsuariaLogada === pergunta.autora?.idUsuaria && !resposta.aceita" 
+                class="btn-accept" 
+                (click)="marcarAceita(resposta.idResposta)" 
+                title="Marcar como Resposta Aceita">
+          <i class="fa-solid fa-check"></i> Aceitar Solução
+        </button>
+        
+        <span *ngIf="resposta.aceita" class="badge-accepted">
+            <i class="fa-solid fa-star"></i> Melhor Resposta
+        </span>
+
+        </div>
+    </div>
+  </div>
+
+  <div class="reply-form-section">
+    <h3>Responder a este Tópico</h3>
+    <form (ngSubmit)="enviarResposta()" class="reply-form-card">
+      <div class="form-group">
+        <textarea [(ngModel)]="respostaCorpo" name="respostaCorpo" rows="4" required 
+                  placeholder="Escreva sua resposta ou comentário aqui..."></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" [disabled]="!respostaCorpo.trim()" class="submit-btn">
+          <i class="fa-solid fa-reply"></i> Enviar Resposta
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

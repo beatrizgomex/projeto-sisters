@@ -1,0 +1,149 @@
+/* src/app/forum/pergunta-form/pergunta-form.component.css */
+
+/* === ESTILOS REUTILIZADOS DE FORMULÁRIO (noticia-form) === */
+
+.page-banner {
+  width: 100%;
+  background-color: #F9EAEB;
+  padding: 20px 0;
+  border-bottom: 1px solid #EBCBCF;
+  margin-bottom: 40px;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  color: #BB0000;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Botão de Voltar */
+.back-btn {
+  font-size: 24px;
+  color: #555;
+  text-decoration: none;
+  transition: transform 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.back-btn:hover {
+  color: #BB0000;
+  transform: scale(1.1);
+}
+
+
+/* === Container e Cartão do Formulário === */
+
+.container {
+  padding: 0 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  padding-bottom: 50px;
+}
+
+.form-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #BB0000;
+}
+
+/* Botão de Enviar */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.submit-btn {
+  background-color: #BB0000;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, opacity 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.submit-btn:hover:not([disabled]) {
+  background-color: #880000;
+}
+
+.submit-btn[disabled] {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Estilo para Alerts */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert.success {
+  background-color: #e6ffe6;
+  color: #008000;
+  border: 1px solid #ccecc0;
+}
+
+.alert.error {
+  background-color: #ffe6e6;
+  color: #BB0000;
+  border: 1px solid #ecc0c0;
+}

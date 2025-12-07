@@ -10,6 +10,9 @@ import { MensagemChatComponent } from './features/mensagem/mensagem-chat/mensage
 import { Login } from './features/login/login';
 import { Cadastro } from './features/cadastro/cadastro';
 import { EditarPerfilComponent } from './features/editarPerfil/editar-perfil.component';
+import { ForumListComponent } from './forum/forum-list/forum-list.component';
+import { PerguntaFormComponent } from './forum/pergunta-form/pergunta-form.component';
+import { PerguntaDetailComponent } from './forum/pergunta-detail/pergunta-detail.component';
 
 
 export const routes: Routes = [
@@ -31,6 +34,10 @@ export const routes: Routes = [
   { path: 'chat/:id', component: MensagemChatComponent },
   { path: 'atualizarperfil', component: EditarPerfilComponent },
   { path: '**', redirectTo: '/login' },
+  
+  { path: 'forum', component: ForumListComponent },
+  { path: 'forum/publicar', component: PerguntaFormComponent },
+  { path: 'forum/:id', component: PerguntaDetailComponent },
 
 
 ];
