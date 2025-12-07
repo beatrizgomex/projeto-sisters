@@ -1,8 +1,8 @@
 package com.uniriosi.projeto_sisters.infrastructure.entitys;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-
 @Entity
 @Getter @Setter
 @NoArgsConstructor
@@ -29,6 +29,7 @@ public class Notificacao {
 
     private Long referenciaId;
 
-    // opcional: id da usuária relacionada (para abrir perfil)
+    private Long programaId;   // ← OBRIGATÓRIO
+
     private Long usuariaRelacionadoId;
 }

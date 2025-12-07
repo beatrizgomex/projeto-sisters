@@ -17,11 +17,23 @@ public class NotificacaoService {
     private final NotificacaoRepository notificacaoRepository;
     private final UsuariaRepository usuariaRepository;
 
+    /**
+     * Cria uma nova notificação completa.
+     *
+     * @param destinatariaId         ID da usuária que receberá a notificação
+     * @param tipo                   TipoNotificacao
+     * @param mensagem               Mensagem exibida
+     * @param referenciaId           ID da participação (ParticipantesPrograma)
+     * @param programaId             ID do programa de acolhimento
+     * @param usuariaRelacionadoId   ID da usuária relacionada (facultativo)
+     */
     public Notificacao criarNotificacao(
             Long destinatariaId,
             TipoNotificacao tipo,
             String mensagem,
-            Long referenciaId
+            Long referenciaId,
+            Long programaId,
+            Long usuariaRelacionadoId
     ) {
         Usuaria destinataria = usuariaRepository.findById(destinatariaId)
                 .orElseThrow(() -> new RuntimeException("Usuária destinatária não encontrada"));
@@ -30,7 +42,9 @@ public class NotificacaoService {
                 .destinataria(destinataria)
                 .tipo(tipo)
                 .mensagem(mensagem)
-                .referenciaId(referenciaId)
+                .referenciaId(referenciaId)     // idParticipacao
+                .programaId(programaId)         // idPrograma
+                .usuariaRelacionadoId(usuariaRelacionadoId)
                 .lida(false)
                 .build();
 

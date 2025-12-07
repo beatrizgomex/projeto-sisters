@@ -5,8 +5,6 @@ import com.uniriosi.projeto_sisters.infrastructure.entitys.TipoNotificacao;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.AmizadeRepository;
 import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
-import com.uniriosi.projeto_sisters.service.NotificacaoService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +36,11 @@ public class AmizadeService {
         Usuaria solicitada = usuariaRepository.findById(idSolicitada)
                 .orElseThrow(() -> new RuntimeException("Usuária solicitada não encontrada"));
 
-        Optional<Amizade> amizadeExistente = amizadeRepository.findByUsuaria1AndUsuaria2OrUsuaria2AndUsuaria1(
-                solicitante, solicitada, solicitada, solicitante);
+        Optional<Amizade> amizadeExistente = amizadeRepository
+                .findByUsuaria1AndUsuaria2OrUsuaria2AndUsuaria1(
+                        solicitante, solicitada,
+                        solicitada, solicitante
+                );
 
         if (amizadeExistente.isPresent()) {
             throw new RuntimeException("Já existe um vínculo (pendente, aceito ou recusado) entre estas usuárias.");
@@ -53,11 +54,14 @@ public class AmizadeService {
 
         Amizade amizadeSalva = amizadeRepository.save(novaAmizade);
 
+        // >>> Notificação ajustada para o novo formato <<<
         notificacaoService.criarNotificacao(
-                solicitada.getIdUsuaria(),              // destinatária
-                TipoNotificacao.AMIZADE,
+                solicitada.getIdUsuaria(),                        // destinatária
+                TipoNotificacao.AMIZADE,                          // tipo
                 solicitante.getNome() + " te enviou uma solicitação de amizade",
-                solicitante.getIdUsuaria()
+                amizadeSalva.getIdAmizade() ,                            // referenciaId (id da amizade)
+                null,                                             // programaId (não se aplica)
+                solicitante.getIdUsuaria()                        // usuariaRelacionadoId
         );
 
         return amizadeSalva;

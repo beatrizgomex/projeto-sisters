@@ -26,4 +26,5 @@ public class Amizade {
 
     @Column(nullable = false)
     private String status;
+
 }

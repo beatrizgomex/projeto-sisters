@@ -5,13 +5,13 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@SuperBuilder
 @Entity
 @PrimaryKeyJoinColumn(name = "id_usuaria")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class Aluna extends Usuaria{
 
     @Id
