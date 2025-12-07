@@ -46,21 +46,25 @@
 -   20 VUs: *6.19 ms*
 -   100 VUs: *7.72 ms*
 -   500 VUs: *96.3 ms*
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeinserirl.jpg)
+<img width="1600" height="667" alt="image" src="https://github.com/user-attachments/assets/00df3220-dc92-4162-82bf-9202200dd779" />
+
+
 
 #### Vazão média por carga
 
 -   20 VUs: *186.18*
 -   100 VUs: *897.88*
 -   500 VUs: *2303.08*
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeinserirv.jpg)
+<img width="1600" height="667" alt="image" src="https://github.com/user-attachments/assets/3b972f8a-0fe4-45e3-8868-75b1ae6bf05b" />
+
 
 #### Concorrência
 
 -   20 VUs: min=20 / max=20
 -   100 VUs: min=100 / max=100
 -   500 VUs: min=500 / max=500
-[Gráfico](https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/testeinserirc.jpg)
+<img width="1600" height="667" alt="image" src="https://github.com/user-attachments/assets/0fe48c92-a653-498f-ad6b-16960c2adaff" />
+
 
 #### Hipoteses
 
@@ -77,18 +81,21 @@ O código atualizado é superior porque melhora a velocidade, a limpeza e a robu
 #### Latência média por carga
 -   20 VUs: *3.02 ms*
 -   100 VUs: *2.65 ms*
-<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/latenciaMedia2.jpg" />
+<img width="1600" height="667" alt="image" src="https://github.com/user-attachments/assets/60799ec0-2d24-414f-9cea-9f482ec24b2e" />
+
 
   #### Vazão média por carga
 - 20 VUs: *193.13*
 - 100 VUs: *969.06*
-<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/vazao2.jpg" />
+<img width="1600" height="667" alt="image" src="https://github.com/user-attachments/assets/0965ca9c-c4f5-49f1-a709-6624c9a39e2f" />
+
  
  #### Concorrência
 
 - 20 VUs: min=20 / max=20
 - 100 VUs: min=100 / max=100
-<img width="790" height="490" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/concorrencia2.jpg" />
+<img width="1600" height="667" alt="image" src="https://github.com/user-attachments/assets/5b7e73d4-5cc9-4b87-b7d7-4ebd1b94bbed" />
+
 
 ### Melhorias/otimizações
 A intervenção realizada na arquitetura do backend eliminou um gargalo que estava presente mesmo em cargas moderadas, resultando em uma execução de código muito mais rápida e eficiente.
@@ -100,7 +107,6 @@ Comparando a Medição 1 com os resultados atuais:
 100 VUs: redução de 7.72 ms → 2.65 ms
 
 A redução superior a 50% em ambos os cenários é um indicativo de que a otimização foi altamente eficaz. O sistema agora é muito mais rápido para processar e responder às requisições sob as mesmas condições de carga.
-<img width="1390" height="590" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/comparacaoLatencia.jpg" />
 
 #### Vazão
 
@@ -112,7 +118,8 @@ Comparação entre as medições:
 
 O sistema não apenas ficou mais rápido, mas também conseguiu processar mais requisições por segundo, especialmente no cenário de 100VUs, onde a capacidade aumentou em mais de 71 req/s. Isso comprova que a otimização permitiu que o sistema aproveitasse melhor os recursos disponíveis para completar mais tarefas
 
-<img width="1390" height="590" alt="image" src="https://github.com/beatrizgomex/projeto-sisters/blob/main/testes-carga/comparacaoVazao.jpg" />
+<img width="1600" height="800" alt="image" src="https://github.com/user-attachments/assets/ec61e19b-6934-45ec-86d4-6e6c21c0012f" />
+
 
 
 #### Concorrência
