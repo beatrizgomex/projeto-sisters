@@ -1,0 +1,202 @@
+.page-banner {
+  width: 100%;
+  background-color: #F9EAEB; /* Rosa bem claro, conforme a imagem */
+  padding: 20px 0;
+  border-bottom: 1px solid #EBCBCF;
+  margin-bottom: 40px; /* Espaço entre o banner e a lista */
+}
+
+.banner-content {
+  max-width: 1200px; /* Mesma largura do conteúdo principal */
+  margin: 0 auto;    /* Centraliza o conteúdo dentro da faixa */
+  padding: 0 50px;   /* Alinhado com o Header */
+  display: flex;
+  justify-content: space-between; /* Título na ponta esq, Botão na ponta dir */
+  align-items: center;
+}
+
+.page-title {
+  color: #BB0000; /* Vermelho UNIRIO */
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Botão de Adicionar (Estilo Circular) */
+.add-btn {
+  font-size: 24px;
+  color: #555;
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  color: #BB0000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+}
+
+/* === 2. CONTEÚDO PRINCIPAL === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  padding-bottom: 50px; /* Espaço no final */
+}
+
+/* --- Estilos do Grid --- */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* --- Estilos do Card --- */
+.news-card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none; /* Para usar o card como link */
+  color: inherit;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  padding: 15px 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/* Estilo para a tag do Fórum (Substitui tag-news) */
+.tag-forum {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #28a745; /* Cor para Resolvido */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.tag-forum.tag-aberta {
+  color: #BB0000; /* Cor para Aberto (Vermelho da marca) */
+}
+
+.forum-stats {
+  font-size: 13px;
+  color: #888;
+}
+
+.forum-stats i {
+  margin-right: 4px;
+}
+
+.card-body {
+  padding: 20px;
+  flex-grow: 1; /* Garante que o corpo ocupe o espaço restante */
+}
+
+.news-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+  /* Limita o texto a 2 linhas */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  /* Limita o texto a 3 linhas */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rodapé do Card */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+  padding: 15px 20px;
+  margin-top: auto;
+}
+
+.news-date {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+
+.news-date i {
+  margin-right: 5px;
+  color: #BB0000;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.author-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.btn-delete:hover {
+  color: #BB0000;
+}
+
+/* Estilo para quando não há dados */
+.alert.info {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-left: 5px solid #BB0000;
+  border-radius: 5px;
+  color: #333;
+}
