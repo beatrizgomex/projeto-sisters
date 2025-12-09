@@ -1,16 +1,17 @@
 package com.uniriosi.projeto_sisters.controller;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Pergunta;
+import com.uniriosi.projeto_sisters.infrastructure.entitys.Resposta;
 import com.uniriosi.projeto_sisters.service.PerguntaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 
 @RestController
 @RequestMapping("/pergunta")
 @RequiredArgsConstructor
-
+@CrossOrigin(origins = "http://localhost:4200")
 public class PerguntaController {
     private record PerguntaRequest(Long idUsuaria, String titulo, String corpo) {}
     private record PerguntaEditRequest(Long idUsuaria, String titulo, String corpo) {}
@@ -53,5 +54,15 @@ public class PerguntaController {
         perguntaService.editarPergunta(idPergunta, dadosNovos, dto.idUsuaria());
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/todas")
+    public ResponseEntity<List<Pergunta>> listarTodasPerguntas() {
+        return ResponseEntity.ok(perguntaService.listarTodasPerguntas());
+    }
+
+    @GetMapping("/{idPergunta}/respostas")
+    public ResponseEntity<List<Resposta>> buscarRespostasDaPergunta(@PathVariable Long idPergunta) {
+        return ResponseEntity.ok(perguntaService.buscarRespostas(idPergunta));
     }
 }

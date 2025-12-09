@@ -1,7 +1,6 @@
 package com.uniriosi.projeto_sisters.service;
 
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Amizade;
-import com.uniriosi.projeto_sisters.infrastructure.entitys.TipoNotificacao;
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Usuaria;
 import com.uniriosi.projeto_sisters.infrastructure.repository.AmizadeRepository;
 import com.uniriosi.projeto_sisters.infrastructure.repository.UsuariaRepository;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class AmizadeService {
     @Autowired
@@ -21,8 +19,6 @@ public class AmizadeService {
     @Autowired
     private AmizadeRepository amizadeRepository;
 
-    @Autowired
-    private NotificacaoService notificacaoService;
 
 
     public AmizadeService(AmizadeRepository amizadeRepository, UsuariaRepository usuariaRepository) {
@@ -36,11 +32,8 @@ public class AmizadeService {
         Usuaria solicitada = usuariaRepository.findById(idSolicitada)
                 .orElseThrow(() -> new RuntimeException("Usuária solicitada não encontrada"));
 
-        Optional<Amizade> amizadeExistente = amizadeRepository
-                .findByUsuaria1AndUsuaria2OrUsuaria2AndUsuaria1(
-                        solicitante, solicitada,
-                        solicitada, solicitante
-                );
+        Optional<Amizade> amizadeExistente = amizadeRepository.findByUsuaria1AndUsuaria2OrUsuaria2AndUsuaria1(
+                solicitante, solicitada, solicitada, solicitante);
 
         if (amizadeExistente.isPresent()) {
             throw new RuntimeException("Já existe um vínculo (pendente, aceito ou recusado) entre estas usuárias.");
@@ -52,19 +45,7 @@ public class AmizadeService {
                 .status("PENDENTE")
                 .build();
 
-        Amizade amizadeSalva = amizadeRepository.save(novaAmizade);
-
-        // >>> Notificação ajustada para o novo formato <<<
-        notificacaoService.criarNotificacao(
-                solicitada.getIdUsuaria(),                        // destinatária
-                TipoNotificacao.AMIZADE,                          // tipo
-                solicitante.getNome() + " te enviou uma solicitação de amizade",
-                amizadeSalva.getIdAmizade() ,                            // referenciaId (id da amizade)
-                null,                                             // programaId (não se aplica)
-                solicitante.getIdUsuaria()                        // usuariaRelacionadoId
-        );
-
-        return amizadeSalva;
+        return amizadeRepository.save(novaAmizade);
     }
 
     public Amizade aceitarAmizade(Long idAmizade, Long idUsuaria) {

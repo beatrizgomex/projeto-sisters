@@ -1,5 +1,6 @@
 package com.uniriosi.projeto_sisters.controller;
 
+
 import com.uniriosi.projeto_sisters.infrastructure.entitys.Resposta;
 import com.uniriosi.projeto_sisters.service.RespostaService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/resposta") // Rota base para todas as operações de Resposta
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class RespostaController {
 
     // Injeção do service de Resposta

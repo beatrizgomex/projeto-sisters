@@ -25,7 +25,7 @@ public class PerguntaService {
 
     public Pergunta criarPergunta(Long idUsuaria, String titulo, String corpo){
         Usuaria autora =  usuariaRepository.findById(idUsuaria).orElseThrow(
-            () -> new RuntimeException("Usuaria não encontrada")
+                () -> new RuntimeException("Usuaria não encontrada")
         );
 
         Pergunta pergunta = Pergunta.builder()
@@ -77,6 +77,10 @@ public class PerguntaService {
         Pergunta pergunta = buscarPergunta(idPergunta);
 
         return respostaRepository.findByPergunta(pergunta);
+    }
+
+    public List<Pergunta> listarTodasPerguntas() {
+        return perguntaRepository.findAll();
     }
 
 }
